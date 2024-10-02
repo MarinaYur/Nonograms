@@ -1,0 +1,19 @@
+.game_field-left {
+  margin: 20px;
+}
+
+.solutionBtn,
+.resetbtn,
+.savebtn,
+.contbtn {
+  display: block;
+  margin: 10px;
+  font-size: 12px;
+}
+
+.solutionBtn:hover,
+.resetbtn:hover,
+.savebtn:hover,
+.contbtn:hover {
+  background-color:  var(--hover-bg-color);
+}

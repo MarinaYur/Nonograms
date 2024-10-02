@@ -1,0 +1,71 @@
+.size {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  @include media2 {
+    justify-content: center;
+  }
+}
+
+.size_p {
+  line-height: 19px;
+  @include media2 {
+    display: none;
+  }
+}
+
+/* Стиль Выпадающей Кнопки */
+.dropbtn {
+  width: 80px;
+  margin: 0px 5px;
+  color:  var(--text-color);
+  padding: 2px;
+  font-size: 16px;
+  background-color: #8080805c;  // border: none;
+  cursor: pointer;
+}
+
+/* контейнер <div> - необходим для размещения выпадающего содержимого */
+.size_dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.randombtn:hover {
+  background-color:  var(--dropdown-content-bg-color);
+}
+
+/* Выпадающей контент (по умолчанию скрыт) */
+.dropdown-content {
+  margin-top: 25px;
+  display: none;
+  position: absolute;
+  background-color: var(--dropdown-content-bg-color);
+  border: 1px solid grey;
+  min-width: 100px;
+  z-index: 1;
+}
+
+/* Ссылки внутри выпадающего списка */
+.dropdown-content span {
+  color: var(--text-color);
+  padding: 5px 10px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+/* Изменить цвет выпадающих ссылок при наведении */
+.dropdown-content span:hover {
+  font-weight: 600;
+}
+
+/* Показать выпадающее меню при наведении */
+.size_dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Изменить цвет фона выпадающего кнопка при отображении выпадающего списка */
+.size_dropdown:hover .dropbtn {
+  background-color:  var(--dropdown-content-bg-color);
+}

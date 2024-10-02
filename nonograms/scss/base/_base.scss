@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root{
+  --panel-bg-color: bisque;
+  --dropdown-content-bg-color: rgb(241 200 138);
+  ----hover-bg-color: rgb(241 200 138);
+  --text-color: black;
+  --cross-img: url(./../assets/cross.gif);
+}
+
+:root[theme='dark'] {
+  --panel-bg-color: #2f3542;
+  --hover-bg-color: #57606f;
+  --text-color: #ced6e0;
+  --dropdown-content-bg-color: #57606f;
+  --cross-img: url(./../assets/light-cross.png);
+}
+
+html {
+  color: var(--text-color);
+}
+
+body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ main {
+  max-width: 1440px;
+  width: 100%;
+  padding: 130px 60px 60px 60px;
+  background-color: var(--panel-bg-color);
+  gap: 130px;
+  @extend %flex-center;
+  @include media1 {
+      gap: 20px;
+    }
+    @include media2 {
+      padding: 130px 10px 0 10px;
+    }
+    @include media3 {
+      flex-direction: column-reverse;
+      padding: 79px 1px 0 1px;
+    }
+}
+
+ p {
+  font-size: 20px;
+  padding-right: 25px;
+}

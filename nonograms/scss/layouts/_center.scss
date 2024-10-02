@@ -1,0 +1,25 @@
+.center-s_timer {
+  margin: 0 auto;
+  text-align: right;
+  padding: 47px 0 15px 0;
+  @include media3 {
+    text-align: center;
+  }
+}
+
+.solveMsg {
+  position: absolute;
+  margin: 41px 0 0 105px;
+  background: linear-gradient(90deg, #e933ff, #ffb400, #ff3333, #334dff, #e933ff);
+  background-size: 200% auto;
+  background-clip: text;
+  font-size: 20px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textflow 5s linear infinite;
+}
+
+@keyframes textflow {
+  from {background-position: 0% center}
+  to {background-position: 200% center}
+}
