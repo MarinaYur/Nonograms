@@ -3,7 +3,7 @@
   margin: 0 auto;
   max-width: 800px;
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   @include media3 {
     flex-direction: column;
     }
@@ -26,7 +26,7 @@
   .game_play-field {
     display: flex;
     flex-wrap: wrap;
-    border-top: 1px solid black;
+    border-top: 1px solid rgb(80,32,0);
   }
 
 
@@ -34,7 +34,7 @@
     display: flex;
     flex-wrap: wrap;
     background-color: #80808040;
-    border-left: 1.5px solid var(--text-color);
+    border-left: 1.5px solid rgb(80,32,0);
     border-bottom: 0px;
   }
 
@@ -42,7 +42,7 @@
   .game_button-block1 {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid var(--text-color);
+    border: 1px solid rgb(80,32,0);
   }
 
   .game_button-block {
@@ -56,7 +56,7 @@
     margin: 0;
     width: 25px;
     height: 25px;
-    border: 0.1px solid var(--text-color);
+    border: 0.1px solid rgb(215 197 79);
     justify-content: center;
     align-items: center;
     cursor: pointer;
@@ -64,12 +64,12 @@
 
   .game_left-clue {
     background-color: #80808040;
-    border-right: 1px solid var(--text-color);
-    border-top: 1px solid var(--text-color);
+    border-right: 1px solid rgb(80,32,0);
+    border-top: 1px solid rgb(80,32,0);
   }
 
   .game_button--colored {
-    background-color:  var(--text-color);
+    background-color: rgb(80,32,0);
   }
 
   .game_button--crossed {

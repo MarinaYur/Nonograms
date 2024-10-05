@@ -1,9 +1,27 @@
 @charset "UTF-8";
-main {
+.nonogram-sizes, main {
   display: flex;
   justify-content: center;
 }
 
+footer span, .application-name, body .greetings {
+  background: linear-gradient(90deg, #783301, #ffab44, #a15025, #af7234, #783301);
+  background-size: 200% auto;
+  background-clip: text;
+  font-size: 60px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textflow 5s linear infinite;
+}
+
+@keyframes textflow {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: 200% center;
+  }
+}
 * {
   box-sizing: border-box;
   padding: 0;
@@ -14,7 +32,8 @@ main {
   --panel-bg-color: bisque;
   --dropdown-content-bg-color: rgb(241 200 138);
   ----hover-bg-color: rgb(241 200 138);
-  --text-color: black;
+  --text-color: rgb(80,32,0);
+  --textBtn-color: #FFFFFF;
   --cross-img: url(./../assets/cross.gif);
 }
 
@@ -26,23 +45,21 @@ main {
   --cross-img: url(./../assets/light-cross.png);
 }
 
-html {
-  color: var(--text-color);
-}
-
 body {
   position: relative;
   display: flex;
+  flex-direction: column-reverse;
   align-items: center;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100dvh;
+  background-color: var(--panel-bg-color);
+  padding-top: 10px;
 }
-
 main {
   max-width: 1440px;
   width: 100%;
-  padding: 130px 60px 60px 60px;
-  background-color: var(--panel-bg-color);
-  gap: 130px;
+  justify-content: space-between;
 }
 @media screen and (max-width: 1150px) {
   main {
@@ -103,8 +120,23 @@ p {
   display: inline-block;
 }
 
-.randombtn:hover {
-  background-color: var(--dropdown-content-bg-color);
+.randombtn, .dropbtn, .dropdown-content, .statistics {
+  display: inline-block;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+  user-select: none;
+  padding: 0.7em;
+  border: 1px solid rgb(80, 32, 0);
+  border-radius: 5px;
+  outline: none;
+  background: rgb(147, 80, 36) linear-gradient(rgb(106, 58, 26), rgb(147, 80, 36) 80%);
+  box-shadow: 0 6px rgb(86, 38, 6), 0 3px 15px rgba(0, 0, 0, 0.4), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 0 3px rgba(255, 255, 255, 0.5);
+  transition: 0.2s;
+}
+
+.randombtn:hover, .dropbtn:hover, .statistics:hover {
+  background: rgb(167, 91, 41) linear-gradient(rgb(126, 69, 31), rgb(167, 91, 41) 80%);
 }
 
 /* Выпадающей контент (по умолчанию скрыт) */
@@ -112,7 +144,7 @@ p {
   margin-top: 25px;
   display: none;
   position: absolute;
-  background-color: var(--dropdown-content-bg-color);
+  background: rgb(167, 91, 41) linear-gradient(rgb(126, 69, 31), rgb(167, 91, 41) 80%);
   border: 1px solid grey;
   min-width: 100px;
   z-index: 1;
@@ -120,11 +152,25 @@ p {
 
 /* Ссылки внутри выпадающего списка */
 .dropdown-content span {
-  color: var(--text-color);
+  color: var(--textBtn-color);
   padding: 5px 10px;
   text-decoration: none;
   display: block;
   cursor: pointer;
+}
+
+.dropdown-content span::first-letter {
+  text-transform: uppercase;
+}
+
+.dropdown-content .selected {
+  text-decoration: underline;
+}
+
+.dropdown-content .selected::first-letter {
+  color: rgb(253, 0, 0);
+  font-weight: 900;
+  font-size: large;
 }
 
 /* Изменить цвет выпадающих ссылок при наведении */
@@ -147,7 +193,7 @@ p {
   margin: 0 auto;
   max-width: 800px;
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
 }
 @media screen and (max-width: 820px) {
   .game_field {
@@ -172,14 +218,14 @@ p {
 .game_play-field {
   display: flex;
   flex-wrap: wrap;
-  border-top: 1px solid black;
+  border-top: 1px solid rgb(80, 32, 0);
 }
 
 .game_top-clue {
   display: flex;
   flex-wrap: wrap;
   background-color: rgba(128, 128, 128, 0.2509803922);
-  border-left: 1.5px solid var(--text-color);
+  border-left: 1.5px solid rgb(80, 32, 0);
   border-bottom: 0px;
 }
 
@@ -187,7 +233,7 @@ p {
 .game_button-block1 {
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid var(--text-color);
+  border: 1px solid rgb(80, 32, 0);
 }
 
 .game_button-block {
@@ -201,7 +247,7 @@ p {
   margin: 0;
   width: 25px;
   height: 25px;
-  border: 0.1px solid var(--text-color);
+  border: 0.1px solid rgb(215, 197, 79);
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -209,12 +255,12 @@ p {
 
 .game_left-clue {
   background-color: rgba(128, 128, 128, 0.2509803922);
-  border-right: 1px solid var(--text-color);
-  border-top: 1px solid var(--text-color);
+  border-right: 1px solid rgb(80, 32, 0);
+  border-top: 1px solid rgb(80, 32, 0);
 }
 
 .game_button--colored {
-  background-color: var(--text-color);
+  background-color: rgb(80, 32, 0);
 }
 
 .game_button--crossed {
@@ -229,13 +275,26 @@ p {
   background-size: cover;
 }
 
+.game {
+  align-self: end;
+}
+
 .game_wrapper {
-  border: 5px solid var(--text-color);
+  border: 1px solid rgb(80, 32, 0);
+  border-radius: 5px;
+  outline: none;
+  box-shadow: 0 0px rgb(86, 38, 6), 0 3px 15px rgba(0, 0, 0, 0.4), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 0 3px rgba(255, 255, 255, 0.5);
+  transition: 0.2s;
 }
 @media screen and (max-width: 820px) {
   .game_wrapper {
     border: 0px solid var(--text-color);
   }
+}
+
+.center-s {
+  min-width: 634px;
+  margin: 0 auto;
 }
 
 .center-s_timer {
@@ -249,13 +308,30 @@ p {
   }
 }
 
-.solveMsg {
+.solve-modal {
   position: absolute;
-  margin: 41px 0 0 105px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border: 8px solid brown;
+  border-radius: 65px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 40%;
+  height: 250px;
+  z-index: 3;
+  background-color: #fbfe83;
+}
+.solve-modal p {
+  font-family: "Snell Roundhand", cursive;
+  font-size: 45px;
+  text-align: center;
   background: linear-gradient(90deg, #e933ff, #ffb400, #ff3333, #334dff, #e933ff);
   background-size: 200% auto;
   background-clip: text;
-  font-size: 20px;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: textflow 5s linear infinite;
@@ -269,8 +345,15 @@ p {
     background-position: 200% center;
   }
 }
-.game_field-left {
-  margin: 20px;
+.application-name {
+  margin: 0 auto;
+  font-family: "Snell Roundhand", cursive;
+  font-family: 900;
+}
+
+.nonogram-sizes {
+  flex-direction: column;
+  row-gap: 25px;
 }
 
 .solutionBtn,
@@ -279,7 +362,7 @@ p {
 .contbtn {
   display: block;
   margin: 10px;
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .solutionBtn:hover,
@@ -301,7 +384,6 @@ p {
 }
 
 .theme-btns {
-  margin: -100px 5px 52px 119px;
   display: flex;
   flex-direction: column;
 }
@@ -335,36 +417,118 @@ p {
   color: white;
 }
 
-.saved-results {
+.statistics {
+  cursor: pointer;
+}
+
+.modal-results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 2px;
   border: 1px solid grey;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  opacity: 0;
+  transform: scale(0.1);
+  font-size: 27px;
+  transition: all 0.5s ease;
+  background-color: rgba(134, 62, 0, 0.9);
+}
+.modal-results__active {
+  transition: all 0.5s ease;
+  transform: scale(1);
+  z-index: 100;
+  opacity: 1;
+  top: 0;
+  left: 0;
 }
 
-.saved-results h2 {
+.saved-results {
+  width: 20%;
   font-size: 17px;
-  border: 0.5px solid grey;
+  margin: 0 auto;
+  background-color: var(--textBtn-color);
+  box-shadow: 0 0px rgb(86, 38, 6), 0 3px 15px rgb(237, 21, 21), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 0 3px rgba(255, 255, 255, 0.5);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+.saved-results ol {
+  color: darkred;
+  font-size: larger;
+  font-family: 500;
+  border: 2px solid rgb(80, 32, 0);
+}
+.saved-results h2 {
+  color: #783301;
+  font-size: 35px;
+  font-family: "Snell Roundhand", cursive;
+  font-family: 900;
 }
 @media screen and (max-width: 920px) {
-  .saved-results h2 {
+  .saved-results {
     font-size: 17px;
-  }
-}
-
-.saved-results ol li {
-  line-height: 25px;
-  border: 0.5px solid grey;
-}
-@media screen and (max-width: 820px) {
-  .saved-results ol li {
-    line-height: 19px;
   }
 }
 
 .saved-res {
   display: flex;
   justify-content: space-between;
+  padding: 3px 14px 3px 14px;
+  border: 1px solid rgb(80, 32, 0);
+  line-height: 25px;
+}
+@media screen and (max-width: 820px) {
+  .saved-res {
+    line-height: 19px;
+  }
 }
 
 .saved-res div {
   text-align: end;
+}
+
+footer {
+  align-self: center;
+  max-width: 1300px;
+  width: 100%;
+  border-top: 2px solid #783301;
+  border-top-left-radius: 45px;
+  border-top-right-radius: 55px;
+}
+
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  border-radius: 25px;
+  padding: 10px;
+}
+
+.footer__git-logo,
+.footer__rss-logo {
+  width: 3.5rem;
+  height: 3.5rem;
+  background-size: cover;
+}
+
+.footer__git-logo {
+  border-radius: 50%;
+  background-image: url("./../assets/git-logo.png");
+}
+
+.footer__rss-logo {
+  background-image: url("./../assets/rss-logo.svg");
+}
+
+footer span {
+  font-size: 35px;
+  color: #efea66;
+  font-weight: 900;
 }/*# sourceMappingURL=main.css.map */

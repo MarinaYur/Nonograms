@@ -4,15 +4,16 @@
   margin: 0;
 }
 
-:root{
+:root {
   --panel-bg-color: bisque;
   --dropdown-content-bg-color: rgb(241 200 138);
   ----hover-bg-color: rgb(241 200 138);
-  --text-color: black;
+  --text-color: rgb(80,32,0);
+  --textBtn-color: #FFFFFF;
   --cross-img: url(./../assets/cross.gif);
 }
 
-:root[theme='dark'] {
+:root[theme="dark"] {
   --panel-bg-color: #2f3542;
   --hover-bg-color: #57606f;
   --text-color: #ced6e0;
@@ -21,36 +22,43 @@
 }
 
 html {
-  color: var(--text-color);
+  // color: var(--text-color);
 }
 
 body {
   position: relative;
   display: flex;
+  flex-direction: column-reverse;
   align-items: center;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100dvh;
+  background-color: var(--panel-bg-color);
+  padding-top: 10px;
+  .greetings {
+    @extend %rainbow-font;
+  }
 }
 
- main {
+main {
   max-width: 1440px;
   width: 100%;
-  padding: 130px 60px 60px 60px;
-  background-color: var(--panel-bg-color);
-  gap: 130px;
+  justify-content: space-between;
+
   @extend %flex-center;
   @include media1 {
-      gap: 20px;
-    }
-    @include media2 {
-      padding: 130px 10px 0 10px;
-    }
-    @include media3 {
-      flex-direction: column-reverse;
-      padding: 79px 1px 0 1px;
-    }
+    gap: 20px;
+  }
+  @include media2 {
+    padding: 130px 10px 0 10px;
+  }
+  @include media3 {
+    flex-direction: column-reverse;
+    padding: 79px 1px 0 1px;
+  }
 }
 
- p {
+p {
   font-size: 20px;
   padding-right: 25px;
 }

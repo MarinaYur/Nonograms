@@ -1,14 +1,11 @@
-import { centerSection } from "./center-section.js";
 import {
   getGame,
   resetTimer,
   outputLastResults,
-  saveGame,
-  getSavedGame,
-  switchSound
+  switchSound,
 } from "./create-new-game.js";
 
-const leftSection = document.addEventListener("DOMContentLoaded", () => {
+const sizeSection = document.addEventListener("DOMContentLoaded", () => {
   let arrOfTemplates = [
     "dino",
     "frog",
@@ -23,29 +20,28 @@ const leftSection = document.addEventListener("DOMContentLoaded", () => {
     "lama",
   ];
   let prevTemplate;
-  // let nonogramsBestResults = JSON.parse(localStorage.nonograms);
   const main = document.querySelector("main");
   const centerS = document.querySelector(".center-s");
-  // console.log(centerS);
-  const leftS = document.createElement("section");
+  const nonogramSizes = document.createElement("section");
 
+  const applicationName = document.createElement("h1");
   const size = document.createElement("div");
-  const sizeP = document.createElement("p");
   const randomBtn = document.createElement("button");
+  let prevGameName = '';
 
-  leftS.classList = "left-s";
+  applicationName.classList = "application-name";
+  nonogramSizes.classList = "nonogram-sizes";
   size.classList = "size";
-  sizeP.classList = "size_p";
   randomBtn.classList = "dropbtn randombtn";
 
-  centerS.prepend(leftS);
-  leftS.append(size);
-  size.prepend(sizeP);
+  centerS.prepend(nonogramSizes);
+  nonogramSizes.append(applicationName);
+  nonogramSizes.append(size);
   size.append(randomBtn);
 
-  sizeP.innerHTML = "Choose size";
+  applicationName.innerHTML = 'Nonograms';
   randomBtn.innerHTML = "Random";
-  createDropdown(leftS, size);
+  createDropdown(nonogramSizes, size);
 
   //right section
   const rightS = document.createElement("section");
@@ -53,28 +49,35 @@ const leftSection = document.addEventListener("DOMContentLoaded", () => {
   const soundSwitcher = document.createElement("div");
   const darkThemeBtn = document.createElement("button");
   const lightThemeBtn = document.createElement("button");
+  const statistics = document.createElement("button");
+  const resultsModal = document.createElement("div");
   const savedResults = document.createElement("div");
   const headOfSaveResults = document.createElement("h2");
   const listOfBestResults = document.createElement("ol");
 
   rightS.classList = "right-s";
   theme.classList = "theme-btns";
-  soundSwitcher.classList = 'sound-switcher';
+  soundSwitcher.classList = "sound-switcher";
   darkThemeBtn.classList = "theme-btns_dark";
+  statistics.classList = "statistics";
+  resultsModal.classList = 'modal-results';
   savedResults.classList = "saved-results";
 
   main.append(rightS);
   rightS.append(soundSwitcher);
   rightS.append(theme);
-
   theme.append(darkThemeBtn);
   theme.append(lightThemeBtn);
-  rightS.append(savedResults);
+  rightS.append(statistics);
+  rightS.append(resultsModal);
+  resultsModal.append(savedResults);
   savedResults.append(headOfSaveResults);
   savedResults.append(listOfBestResults);
 
   darkThemeBtn.innerHTML = "Dark / Light";
   lightThemeBtn.innerHTML = "theme";
+  statistics.innerHTML = "Statistics";
+
 
   for (let i = 0; i < 5; i += 1) {
     const savedResult = document.createElement("li");
@@ -86,9 +89,15 @@ const leftSection = document.addEventListener("DOMContentLoaded", () => {
   const dropDownContent = document.querySelectorAll(".dropdown-content");
   dropDownContent.forEach((dropDown) => {
     dropDown.addEventListener("click", (e) => {
-      if (e.target.hasAttribute("href")) {
-        prevTemplate = e.target.innerHTML;
-        getGame(e.target.innerHTML);
+
+      const target = e.target;
+
+      if (target.hasAttribute("href")) {
+        if (prevGameName) prevGameName?.classList.remove('selected');
+         prevGameName = target;
+        target.classList.add("selected");
+        prevTemplate = target.innerHTML;
+        getGame(target.innerHTML.toLowerCase());
         resetTimer(1);
       }
     });
@@ -98,14 +107,14 @@ const leftSection = document.addEventListener("DOMContentLoaded", () => {
       const dropdown = document.createElement("div");
       dropdown.classList = "size_dropdown";
       const five = `<div class='dropdown-content'>
-    <span href='#'>airplane</span>
-    <span href='#'>hourglass</span>
-    <span href='#'>heart</span>
-    <span href='#'>five</span>
-    <span href='#'>dog</span>
+    <span href='#'>Airplane</span>
+    <span href='#'>Hourglass</span>
+    <span href='#'>Heart</span>
+    <span href='#'>Five</span>
+    <span href='#'>Dog</span>
     </div>`;
       const ten = `<div class='dropdown-content'>
-    <span href='#'>kettle</span>
+    <span href='#'>Kettle</span>
     <span href='#'>apple</span>
     <span href='#'>cat</span>
     <span href='#'>saucepan</span>
@@ -140,6 +149,15 @@ const leftSection = document.addEventListener("DOMContentLoaded", () => {
     resetTimer(1);
     console.log("randomTemplate", randomTemplate);
   }
+
+  function showSavedBestResults () {
+    resultsModal.classList.add('modal-results__active');
+  }
+
+  function closeResultsModal() {
+    resultsModal.classList.remove('modal-results__active');
+  }
+
   randomBtn.addEventListener("click", chooseRandomTemplate);
   theme.addEventListener("click", function () {
     if (document.documentElement.hasAttribute("theme")) {
@@ -155,6 +173,8 @@ const leftSection = document.addEventListener("DOMContentLoaded", () => {
   }
 
   soundSwitcher.addEventListener("click", switchSound);
+  statistics.addEventListener('click', showSavedBestResults);
+  resultsModal.addEventListener('click',closeResultsModal);
 });
 
-export { leftSection };
+export { sizeSection };

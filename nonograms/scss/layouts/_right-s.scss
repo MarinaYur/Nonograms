@@ -1,15 +1,15 @@
 .right-s {
-text-align: center;
-@include media3{
-  display: flex;
+  text-align: center;
+  @include media3 {
+    display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
-}
+  }
 }
 
 .theme-btns {
   // position: absolute;
-  margin: -100px 5px 52px 119px;
+  // margin: -100px 5px 52px 119px;
   display: flex;
   flex-direction: column;
   & > button {
@@ -25,14 +25,14 @@ text-align: center;
 .sound-switcher {
   height: 30px;
   width: 30px;
-  background: url('./../assets/sound_on.svg') no-repeat center/cover;
+  background: url("./../assets/sound_on.svg") no-repeat center/cover;
   cursor: pointer;
 }
 
 .sound-switcher--active {
   height: 30px;
   width: 30px;
-  background: url('./../assets/sound_off.svg') no-repeat center/cover;
+  background: url("./../assets/sound_off.svg") no-repeat center/cover;
 
   cursor: pointer;
 }
@@ -45,35 +45,87 @@ text-align: center;
   // }
 }
 
-.saved-results {
-  padding: 2px;
-  border: 1px solid grey;
-  // @include media3 {
-  //   display: absolute;
-  // }
+.statistics {
+  cursor: pointer;
 }
 
-.saved-results h2 {
+.modal-results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2px;
+  border: 1px solid grey;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  // height: 100vh;
+  opacity: 0;
+  transform: scale(0.1);
+  font-size: 27px;
+  transition: all 0.5s ease;
+
+  background-color: rgba(134, 62, 0, 0.9);
+
+  &__active {
+    transition: all 0.5s ease;
+    transform: scale(1);
+    z-index: 100;
+    opacity: 1;
+    top: 0;
+    left: 0;
+  }
+}
+
+.saved-results {
+  width: 20%;
   font-size: 17px;
-  border: 0.5px solid grey;
+  margin: 0 auto;
+  background-color: var(--textBtn-color);
+  box-shadow:
+  0 0px rgb(86,38,6),
+  0 3px 15px rgb(237 21 21),
+  inset 0 1px rgba(255,255,255,.3),
+  inset 0 0 3px rgba(255,255,255,.5);
+
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+
+
+  & ol {
+    color: darkred;
+    font-size: larger;
+    font-family: 500;
+    border: 2px solid rgb(80, 32, 0);
+  }
+
+  & h2 {
+    color: #783301;
+    font-size: 35px;
+    font-family: "Snell Roundhand", cursive;
+    font-family: 900;
+  }
+
   @include media2 {
     font-size: 17px;
   }
 }
 
-.saved-results ol li {
+.saved-res {
+  display: flex;
+  justify-content: space-between;
+    padding: 3px 14px 3px 14px;
+  border: 1px solid rgb(80, 32, 0);
+  // border-radius: 25px;
   // height: 25px;
   line-height: 25px;
-  border: 0.5px solid grey;
+  // border: 0.5px solid grey;
   @include media3 {
     line-height: 19px;
   }
-}
-
-.saved-res {
-
-  display: flex;
-  justify-content: space-between;
 }
 
 .saved-res div {

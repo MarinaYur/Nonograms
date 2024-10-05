@@ -2,3 +2,17 @@
   display: flex;
   justify-content: center;
 }
+
+%rainbow-font {
+  background: linear-gradient(90deg, #783301, #ffab44, #a15025, #af7234, #783301);
+  background-size: 200% auto;
+  background-clip: text;
+  font-size: 60px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textflow 5s linear infinite;
+}
+@keyframes textflow {
+  from {background-position: 0% center}
+  to {background-position: 200% center}
+}

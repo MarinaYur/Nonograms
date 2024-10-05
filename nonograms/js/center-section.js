@@ -4,16 +4,16 @@ import {
   colorCell,
   resetGame,
   timerFunc,
-  outputLastResults,
   saveGame,
-  sounndOfBlackCellOn, init
+  soundOfBlackCellOn, init
 } from './create-new-game.js';
 import fillCellsWithRightSolution from './functions.js';
 const centerSection = document.addEventListener('DOMContentLoaded', () => {
   const { body } = document;
   const main = document.createElement('main');
   const centerS = document.createElement('section');
-  const timer = document.createElement('h1');
+  // const soundSwitcherTimer = document.createElement('div');
+  const timer = document.createElement('h2');
   const timerMin = document.createElement('span');
   const timerSemicolon = document.createElement('span');
   const timerSec = document.createElement('span');
@@ -88,19 +88,19 @@ const centerSection = document.addEventListener('DOMContentLoaded', () => {
       e.target.classList.remove('game_button--colored');
       if (e.target.classList.contains('game_button--crossed')) {
         e.target.classList.remove('game_button--crossed');
-        sounndOfBlackCellOn('empty');
+        soundOfBlackCellOn('empty');
       } else {
         e.target.classList.add('game_button--crossed');
-        sounndOfBlackCellOn('cross');
+        soundOfBlackCellOn('cross');
       }
     }
     if (e.target.classList.contains('c-button')) {
       if (e.target.classList.contains('game_button--crossed-clue')) {
         e.target.classList.remove('game_button--crossed-clue');
-        sounndOfBlackCellOn('empty');
+        soundOfBlackCellOn('empty');
       } else {
         e.target.classList.add('game_button--crossed-clue');
-        sounndOfBlackCellOn('cross');
+        soundOfBlackCellOn('cross');
       }
     }
   }

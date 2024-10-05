@@ -2,10 +2,11 @@ import { obj, getGame, counter, colorCell, interval } from './create-new-game.js
 import { airplane } from './data5x5.js';
 
 export default function fillCellsWithRightSolution() {
-  console.log('fillCellsWithRightSolution func');
-  console.log(obj);
+  // console.log('fillCellsWithRightSolution func');
+  // console.log(obj);
   const playField = document.querySelector('.game_play-field');
   playField.innerHTML = '';
+  console.log('playField', playField);
   playField.style.width = obj.playFieldWidth;
   for (let i = 0; i < obj.game.length; i += 1) {
     const gameButtonBlock = document.createElement('div');
@@ -16,7 +17,7 @@ export default function fillCellsWithRightSolution() {
       gameButton.classList = 'game_button g-button';
       gameButtonBlock.append(gameButton);
       if (obj.game[i][j] === 1) {
-        gameButton.innerHTML = '1';
+        // gameButton.innerHTML = '1';
         gameButton.classList.add('right');
         gameButton.classList.add('game_button--colored');
       }
@@ -27,6 +28,5 @@ export default function fillCellsWithRightSolution() {
     gameButtons.forEach((gameButton) => {
       gameButton.style.pointerEvents = 'none';
     });
-    // clearInterval(interval);
 }
 

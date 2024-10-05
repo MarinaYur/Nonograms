@@ -2,7 +2,6 @@ import { dino, frog, bow, girl, duck } from "./data15x15.js";
 import { airplane, hourglass, heart, five, dog } from "./data5x5.js";
 import { kettle, apple, cat, saucepan, lama } from "./data10x10.js";
 import { centerSection } from "./center-section.js";
-// import { timerFunc } from './functions.js';
 
 let sec = 0;
 let min = 0;
@@ -39,7 +38,7 @@ map.set("five", five);
 map.set("dog", dog);
 
 export function createPlayField(gameName) {
-  console.log("gameName", gameName);
+  // console.log("gameName", gameName);
 
   const playField = document.querySelector(".game_play-field");
   playField.innerHTML = "";
@@ -59,29 +58,29 @@ export function createPlayField(gameName) {
 
       // gameButton.innerHTML =
       //   +gameName.game[i][j] === 1 ? gameName.game[i][j] : '';
-      console.log(gameButton.innerHTML);
+      // console.log(gameButton.innerHTML);
       // if (!ifSaved) {
       if (gameName.game[i][j] === 1) {
         count += 1;
         gameButton.classList.add("right");
-        console.log(ifSaved);
+        // console.log(ifSaved);
       }
       if (gameName.game[i][j] === 2) {
         gameButton.classList.add("game_button--crossed");
-        // sounndOfBlackCellOn('cross');
+        // soundOfBlackCellOn('cross');
       }
       if (gameName.game[i][j] === 3) {
         gameButton.classList.add("game_button--colored");
-        // sounndOfBlackCellOn('black');
+        // soundOfBlackCellOn('black');
       }
       if (gameName.game[i][j] === 4) {
         gameButton.classList.add("game_button--crossed");
-        // sounndOfBlackCellOn(cross);
+        // soundOfBlackCellOn(cross);
         gameButton.classList.add("right");
       }
       if (gameName.game[i][j] === 5) {
         gameButton.classList.add("game_button--colored");
-        // sounndOfBlackCellOn('black');
+        // soundOfBlackCellOn('black');
         gameButton.classList.add("right");
       }
       //   ifSaved = false;
@@ -93,7 +92,7 @@ export function createPlayField(gameName) {
     }
     gameButtonBlock.style.width = gameName.gameButtonBlock;
   }
-  console.log(count);
+  // console.log(count);
   //     if(gameName.stopWatch){
   //   const centerStimer = document.querySelector('.center-s_timer');
   //   centerStimer.innerHTML = gameName.stopWatch;
@@ -153,22 +152,24 @@ export function createLeftClue(gameName) {
     gameButtonBlock.style.width = gameName.gameButtonBlockLeft;
   }
 }
+
 export function saveToStorage() {
   const centerStimer = document.querySelector(".center-s_timer");
   const timer = centerStimer.childNodes;
   const stopWatch = timer[0].innerHTML + ":" + timer[2].innerHTML;
   const resultInObj = {};
+  // console.log(stopWatch);
 
   const bestGameResultObj = {
     obj: obj.name,
     size: obj.size,
-    stopWatch: stopWatch,
+    stopWatchTime: stopWatch,
     allSeconds: allSeconds,
   };
 
   if ("nonograms" in localStorage) {
     nonogramsBestResults = JSON.parse(localStorage.nonograms);
-    console.log(nonogramsBestResults);
+    // console.log(nonogramsBestResults);
   }
 
   if ("1" in nonogramsBestResults === false) {
@@ -193,7 +194,6 @@ export function saveToStorage() {
   localStorage.nonograms = nonogramsBestResultsJson;
   outputLastResults(nonogramsBestResults);
 }
-
 export function outputLastResults(nonogramsBestResults) {
   //transformation localStorage object to array
   const arrFromNonogramsBestResults = [];
@@ -207,10 +207,14 @@ export function outputLastResults(nonogramsBestResults) {
   });
   console.log("arrFromNonogramsBestResults", arrFromNonogramsBestResults);
   const savedResults = document.querySelectorAll(".saved-res");
-  savedResults.forEach(
-    (elem, index) =>
-      (elem.innerHTML = `<div>${arrFromNonogramsBestResults[index].stopWatch}</div>  <div>${arrFromNonogramsBestResults[index].obj}</div>  <div>${arrFromNonogramsBestResults[index].size}</div>`)
-  );
+  savedResults.forEach((elem, index) => {
+    if (
+      arrFromNonogramsBestResults &&
+      arrFromNonogramsBestResults[index]?.stopWatchTime
+    ) {
+      elem.innerHTML = `<div>${arrFromNonogramsBestResults[index]?.stopWatchTime}</div>  <div>${arrFromNonogramsBestResults[index]?.obj}</div>  <div>${arrFromNonogramsBestResults[index]?.size}</div>`;
+    } else elem.innerHTML = '';
+  });
 }
 
 export const getGame = function (gameName) {
@@ -219,7 +223,7 @@ export const getGame = function (gameName) {
   if (gameName === "savedGame") {
     name = JSON.parse(localStorage.savedGame);
     counter = name.counter;
-    console.log("counter after localStorage", counter);
+    // console.log("name after localStorage", name);
     // ifSaved = true;
   } else {
     name = map.get(gameName);
@@ -244,23 +248,27 @@ export const getSavedGame = function () {
 export function msgAboutSolvedNonogram() {
   if (counter === obj.count) {
     if (ifSound) {
-      const audio = new Audio("./../rss-nonograms/assets/win-sound.mp3");
+      const audio = new Audio("./../assets/win-sound.mp3");
       audio.play();
     }
     setTimeout(() => {
+      const { body } = document;
       const centerS = document.querySelector(".center-s");
+      const solveModal = document.createElement("div");
       const solveMsg = document.createElement("p");
+      solveModal.append(solveMsg);
+      solveModal.className = "solve-modal";
       solveMsg.className = "solveMsg";
-      centerS.prepend(solveMsg);
+      body.prepend(solveModal);
       solveMsg.innerHTML = `Great! You have solved the nonogram in ${allSeconds} seconds!`;
       //  alert(`Great! You have solved the nonogram in ${allSeconds} seconds!`);
 
       allSeconds = 0;
-      const { body } = document;
+      // const { body } = document;
       body.addEventListener("click", () => {
-        solveMsg.remove();
+        solveModal.remove();
       });
-    }, 500);
+    }, 1);
     clearInterval(interval);
     counter = 0;
     ifWin = true;
@@ -303,7 +311,7 @@ export function timerFunc(remove) {
 
 export function removeListenersWithTimerFunc() {
   const timer = document.querySelector(".timer");
-  console.log(timer);
+  // console.log(timer);
   const playField = document.querySelector(".game_play-field");
   playField.removeEventListener("click", timerFunc);
   const gameButtons = document.querySelectorAll(".game_button");
@@ -313,17 +321,17 @@ export function removeListenersWithTimerFunc() {
   playField.removeEventListener("click", timerFunc);
 }
 
-export function sounndOfBlackCellOn(event) {
+export function soundOfBlackCellOn(event) {
   const audio = new Audio();
   if (ifSound) {
     if (event === "black") {
-      audio.src = "./../rss-nonograms/assets/sound-for-black-cell.mp3";
+      audio.src = "./../assets/sound-for-black-cell.mp3";
     }
     if (event === "cross") {
-      audio.src = "./../rss-nonograms/assets/sound-for-cross.mp3";
+      audio.src = "./../assets/sound-for-cross.mp3";
     }
     if (event === "empty") {
-      audio.src = "./../rss-nonograms/assets/sound-for-empty-cell.mp3";
+      audio.src = "./../assets/sound-for-empty-cell.mp3";
     }
     audio.play();
   }
@@ -335,21 +343,21 @@ export function colorCell(e) {
       if (!e.target.classList.contains("game_button--colored")) {
         e.target.classList.remove("game_button--crossed");
         e.target.classList.add("game_button--colored");
-        sounndOfBlackCellOn("black");
+        soundOfBlackCellOn("black");
         counter += 1;
       } else {
         e.target.classList.remove("game_button--colored");
-        sounndOfBlackCellOn("empty");
+        soundOfBlackCellOn("empty");
         counter -= 1;
       }
     } else if (!e.target.classList.contains("game_button--colored")) {
       e.target.classList.remove("game_button--crossed");
       e.target.classList.add("game_button--colored");
-      sounndOfBlackCellOn("black");
+      soundOfBlackCellOn("black");
       counter -= 1;
     } else {
       e.target.classList.remove("game_button--colored");
-      sounndOfBlackCellOn("empty");
+      soundOfBlackCellOn("empty");
       counter += 1;
     }
     removeListenersWithTimerFunc();
@@ -357,15 +365,15 @@ export function colorCell(e) {
   if (e.target.classList.contains("c-button") && e.target.innerHTML !== "") {
     if (e.target.classList.contains("game_button--crossed-clue")) {
       e.target.classList.remove("game_button--crossed-clue");
-      sounndOfBlackCellOn("empty");
+      soundOfBlackCellOn("empty");
     } else {
       e.target.classList.add("game_button--crossed-clue");
-      sounndOfBlackCellOn("cross");
+      soundOfBlackCellOn("cross");
     }
   }
 
-  console.log("counter", counter);
-  console.log("e.target", e.target);
+  // console.log("counter", counter);
+  // console.log("e.target", e.target);
   msgAboutSolvedNonogram();
 }
 
@@ -445,14 +453,11 @@ export function saveGame() {
     saveGameBlockArray = [];
   });
 
-  const savedGame = obj;
+  const savedGame = JSON.parse(JSON.stringify(obj));
   savedGame.counter = counter;
   savedGame.game = saveGameArray;
-  console.log("saveGame.counter", savedGame.counter);
   const centerStimer = document.querySelector(".center-s_timer");
-
-  // const timer = centerStimer.childNodes;
-  savedGame.stopWatch = centerStimer.innerHTML;
+  savedGame.stopWatchTime = centerStimer.innerHTML;
 
   //save obj.left (clue)
   const gameButtonBlocksClue = document.querySelectorAll(".game_button-block1");
@@ -500,7 +505,6 @@ export function saveGame() {
     saveTopBlockArray = [];
   });
   savedGame.top = saveTopArray;
-  console.log(savedGame.top);
   localStorage["savedGame"] = JSON.stringify(savedGame);
 }
 
@@ -514,16 +518,11 @@ export function init() {
 
 export function switchSound() {
   const soundSwitcher = document.querySelector(".sound-switcher");
-  console.log('soundSwitcher', soundSwitcher);
   if (ifSound) {
     soundSwitcher.classList.add("sound-switcher--active");
-    // soundSwitcher.classList.remove("sound-switcher");
     ifSound = false;
-    console.log('ifSound', ifSound);
   } else {
-    // soundSwitcher.classList.add("sound-switcher");
     soundSwitcher.classList.remove("sound-switcher--active");
     ifSound = true;
-    console.log('ifSound', ifSound);
   }
 }

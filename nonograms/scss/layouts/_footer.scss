@@ -1,0 +1,40 @@
+footer {
+  align-self: center;
+  max-width: 1300px;
+  width: 100%;
+  border-top: 2px solid #783301;
+  border-top-left-radius: 45px;
+  border-top-right-radius: 55px;
+}
+
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  border-radius: 25px;
+  padding: 10px;
+}
+
+.footer__git-logo,
+.footer__rss-logo {
+  width: 3.5rem;
+  height: 3.5rem;
+  background-size: cover;
+}
+
+.footer__git-logo {
+  border-radius: 50%;
+  background-image: url("./../assets/git-logo.png");
+}
+
+.footer__rss-logo {
+  background-image: url("./../assets/rss-logo.svg");
+}
+
+footer span {
+  font-size: 35px;
+  @extend %rainbow-font;
+  color: #efea66;
+  font-weight: 900;
+}
