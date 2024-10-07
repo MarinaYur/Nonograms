@@ -79,7 +79,7 @@ const sizeSection = document.addEventListener("DOMContentLoaded", () => {
   statistics.innerHTML = "Statistics";
 
 
-  for (let i = 0; i < 5; i += 1) {
+  for (let i = 0; i < 10; i += 1) {
     const savedResult = document.createElement("li");
     listOfBestResults.append(savedResult);
     savedResult.classList = "saved-res";

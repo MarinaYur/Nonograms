@@ -130,9 +130,8 @@ export function saveToStorage() {
   const centerStimer = document.querySelector(".center-s_timer");
   const timer = centerStimer.childNodes;
   const stopWatch = timer[0].innerHTML + ":" + timer[2].innerHTML;
-  const resultInObj = {};
 
-  const bestGameResultObj = {
+  const gameResultObj = {
     obj: obj.name,
     size: obj.size,
     stopWatchTime: stopWatch,
@@ -142,48 +141,42 @@ export function saveToStorage() {
   if ("nonograms" in localStorage) {
     nonogramsBestResults = JSON.parse(localStorage.nonograms);
   }
+  const length = nonogramsBestResults.length;
+console.log(nonogramsBestResults.length);
+    if (length !== 10) {
+      nonogramsBestResults[length] = gameResultObj;
+    } else if (gameResultObj.allSeconds < nonogramsBestResults[length - 1].allSeconds){
+      delete nonogramsBestResults[length - 1];
+      nonogramsBestResults[length - 1] = gameResultObj;
+    }
 
-  if ("1" in nonogramsBestResults === false) {
-    nonogramsBestResults[1] = bestGameResultObj;
-  } else if ("2" in nonogramsBestResults === false) {
-    nonogramsBestResults[2] = bestGameResultObj;
-  } else if ("3" in nonogramsBestResults === false) {
-    nonogramsBestResults[3] = bestGameResultObj;
-  } else if ("4" in nonogramsBestResults === false) {
-    nonogramsBestResults[4] = bestGameResultObj;
-  } else if ("5" in nonogramsBestResults === false) {
-    nonogramsBestResults[5] = bestGameResultObj;
-  } else {
-    delete nonogramsBestResults[1];
-    nonogramsBestResults[1] = nonogramsBestResults[2];
-    nonogramsBestResults[2] = nonogramsBestResults[3];
-    nonogramsBestResults[3] = nonogramsBestResults[4];
-    nonogramsBestResults[4] = nonogramsBestResults[5];
-    nonogramsBestResults[5] = bestGameResultObj;
-  }
-  const nonogramsBestResultsJson = JSON.stringify(nonogramsBestResults);
+  let sortedResults = sortNonogramsResults(nonogramsBestResults);
+  const nonogramsBestResultsJson = JSON.stringify(sortedResults);
   localStorage.nonograms = nonogramsBestResultsJson;
-  outputLastResults(nonogramsBestResults);
+  outputLastResults(sortedResults);
 }
-export function outputLastResults(nonogramsBestResults) {
-  //transformation localStorage object to array
+
+ export function sortNonogramsResults (results) {
   const arrFromNonogramsBestResults = [];
-  for (let key in nonogramsBestResults) {
-    arrFromNonogramsBestResults.push(nonogramsBestResults[key]);
+  for (let key in results) {
+    arrFromNonogramsBestResults.push(results[key]);
   }
 
   //sort array of best results
   arrFromNonogramsBestResults.sort(function (a, b) {
     return a.allSeconds - b.allSeconds;
   });
-  console.log("arrFromNonogramsBestResults", arrFromNonogramsBestResults);
+  return arrFromNonogramsBestResults;
+ }
+
+export function outputLastResults(sortedResults) {
   const savedResults = document.querySelectorAll(".saved-res");
   savedResults.forEach((elem, index) => {
     if (
-      arrFromNonogramsBestResults &&
-      arrFromNonogramsBestResults[index]?.stopWatchTime
+      sortedResults &&
+      sortedResults[index]?.stopWatchTime
     ) {
-      elem.innerHTML = `<div>${arrFromNonogramsBestResults[index]?.stopWatchTime}</div>  <div>${arrFromNonogramsBestResults[index]?.obj}</div>  <div>${arrFromNonogramsBestResults[index]?.size}</div>`;
+      elem.innerHTML = `<div>${sortedResults[index]?.stopWatchTime}</div>  <div>${sortedResults[index]?.obj}</div>  <div>${sortedResults[index]?.size}</div>`;
     } else elem.innerHTML = '';
   });
 }
