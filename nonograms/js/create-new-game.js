@@ -2,15 +2,16 @@ import { dino, frog, bow, girl, duck } from "./data15x15.js";
 import { airplane, hourglass, heart, five, dog } from "./data5x5.js";
 import { kettle, apple, cat, saucepan, lama } from "./data10x10.js";
 import { centerSection } from "./center-section.js";
+import { showTooltip } from "./functions.js";
 
 let sec = 0;
 let min = 0;
 let hours = 0;
 let allSeconds = 0;
-let localStorageObjKey = 0;
 let ifWin = false;
-let ifSaved = false;
 let ifSound = true;
+const solveMsg = `Great! You have solved the nonogram in ${allSeconds} seconds!`;
+const cantSaveSolvedMsg = 'This game was finish, please choose another nonogaram';
 export let nonogramsBestResults = {};
 
 export const localStorageObj = {};
@@ -38,7 +39,6 @@ map.set("five", five);
 map.set("dog", dog);
 
 export function createPlayField(gameName) {
-  // console.log("gameName", gameName);
 
   const playField = document.querySelector(".game_play-field");
   playField.innerHTML = "";
@@ -46,61 +46,34 @@ export function createPlayField(gameName) {
   let count = 0;
   console.log("gameName.game before for", gameName.game);
   for (let i = 0; i < gameName.game.length; i += 1) {
-    // console.log('gameName.game in for', gameName.game);
     const gameButtonBlock = document.createElement("div");
     gameButtonBlock.className = "game_button-block";
     playField.append(gameButtonBlock);
     for (let j = 0; j < gameName.game[i].length; j += 1) {
-      // console.log('gameName.game', gameName.game[i])
       const gameButton = document.createElement("div");
       gameButton.classList = "game_button g-button";
       gameButtonBlock.append(gameButton);
-
-      // gameButton.innerHTML =
-      //   +gameName.game[i][j] === 1 ? gameName.game[i][j] : '';
-      // console.log(gameButton.innerHTML);
-      // if (!ifSaved) {
       if (gameName.game[i][j] === 1) {
         count += 1;
         gameButton.classList.add("right");
-        // console.log(ifSaved);
       }
       if (gameName.game[i][j] === 2) {
         gameButton.classList.add("game_button--crossed");
-        // soundOfBlackCellOn('cross');
       }
       if (gameName.game[i][j] === 3) {
         gameButton.classList.add("game_button--colored");
-        // soundOfBlackCellOn('black');
       }
       if (gameName.game[i][j] === 4) {
         gameButton.classList.add("game_button--crossed");
-        // soundOfBlackCellOn(cross);
         gameButton.classList.add("right");
       }
       if (gameName.game[i][j] === 5) {
         gameButton.classList.add("game_button--colored");
-        // soundOfBlackCellOn('black');
         gameButton.classList.add("right");
       }
-      //   ifSaved = false;
-      // } else {
-      //   if (+gameName.game[i][j] === 1) {
-      //     gameButton.classList.add('right');
-      //   }
-      // }
     }
     gameButtonBlock.style.width = gameName.gameButtonBlock;
   }
-  // console.log(count);
-  //     if(gameName.stopWatch){
-  //   const centerStimer = document.querySelector('.center-s_timer');
-  //   centerStimer.innerHTML = gameName.stopWatch;
-  //   const timer = centerStimer.childNodes;
-  //       const sec = timer[2].innerHTML;
-  //       const min = timer[0].innerHTML;
-  //   timerFunc(sec, min);
-  // }
 }
 
 export function createTopClue(gameName) {
@@ -158,7 +131,6 @@ export function saveToStorage() {
   const timer = centerStimer.childNodes;
   const stopWatch = timer[0].innerHTML + ":" + timer[2].innerHTML;
   const resultInObj = {};
-  // console.log(stopWatch);
 
   const bestGameResultObj = {
     obj: obj.name,
@@ -169,7 +141,6 @@ export function saveToStorage() {
 
   if ("nonograms" in localStorage) {
     nonogramsBestResults = JSON.parse(localStorage.nonograms);
-    // console.log(nonogramsBestResults);
   }
 
   if ("1" in nonogramsBestResults === false) {
@@ -218,22 +189,22 @@ export function outputLastResults(nonogramsBestResults) {
 }
 
 export const getGame = function (gameName) {
+  const nonogramName = document.querySelector('.center-s-nonogram-name');
   ifWin = false;
-  let name = {};
+  let newObj = {};
   if (gameName === "savedGame") {
-    name = JSON.parse(localStorage.savedGame);
-    counter = name.counter;
-    // console.log("name after localStorage", name);
-    // ifSaved = true;
+    newObj = JSON.parse(localStorage.savedGame);
+    counter = newObj.counter;
   } else {
-    name = map.get(gameName);
+    newObj = map.get(gameName);
     counter = 0;
   }
-  console.log("counter continue", counter);
-  createPlayField(name);
-  createTopClue(name);
-  createLeftClue(name);
-  obj = name;
+  nonogramName.childNodes[0].innerHTML = (newObj.name)[0].toUpperCase() + (newObj.name).slice(1);
+  nonogramName.childNodes[1].innerHTML = '';
+  createPlayField(newObj);
+  createTopClue(newObj);
+  createLeftClue(newObj);
+  obj = newObj;
 };
 
 export const getSavedGame = function () {
@@ -245,47 +216,46 @@ export const getSavedGame = function () {
   counter = 0;
 };
 
+export function createModal(msg, classStr1, classStr2) {
+  const { body } = document;
+      const solveModal = document.createElement("div");
+      const solveMsg = document.createElement("p");
+      solveModal.append(solveMsg);
+      solveModal.className = classStr1;
+      solveMsg.className = classStr2;
+      body.prepend(solveModal);
+      solveMsg.innerHTML = msg;
+
+      allSeconds = 0;
+      body.addEventListener("click", () => {
+        solveModal.remove();
+      });
+}
+
 export function msgAboutSolvedNonogram() {
+  const nonogramName = document.querySelector('.center-s-nonogram-name');
   if (counter === obj.count) {
     if (ifSound) {
       const audio = new Audio("./../assets/win-sound.mp3");
       audio.play();
     }
     setTimeout(() => {
-      const { body } = document;
-      const centerS = document.querySelector(".center-s");
-      const solveModal = document.createElement("div");
-      const solveMsg = document.createElement("p");
-      solveModal.append(solveMsg);
-      solveModal.className = "solve-modal";
-      solveMsg.className = "solveMsg";
-      body.prepend(solveModal);
-      solveMsg.innerHTML = `Great! You have solved the nonogram in ${allSeconds} seconds!`;
-      //  alert(`Great! You have solved the nonogram in ${allSeconds} seconds!`);
-
-      allSeconds = 0;
-      // const { body } = document;
-      body.addEventListener("click", () => {
-        solveModal.remove();
-      });
+      createModal(solveMsg, 'solve-modal', 'solveMsg');
     }, 1);
     clearInterval(interval);
     counter = 0;
     ifWin = true;
+    nonogramName.childNodes[1].innerHTML +=  ' solved';
     const gameButtons = document.querySelectorAll(".game_button");
     gameButtons.forEach((gameButton) => {
       gameButton.style.pointerEvents = "none";
     });
-    saveToStorage();
+    saveToStorage(this);
   }
 }
 
 // eslint-disable-next-line no-unused-vars
 function timerStep() {
-  // if (secOfSavedGame) {
-  //   sec = secOfSavedGame;
-  //   min = minOfSaveGame;
-  // } else {
   allSeconds += 1;
   sec += 1;
 
@@ -311,7 +281,6 @@ export function timerFunc(remove) {
 
 export function removeListenersWithTimerFunc() {
   const timer = document.querySelector(".timer");
-  // console.log(timer);
   const playField = document.querySelector(".game_play-field");
   playField.removeEventListener("click", timerFunc);
   const gameButtons = document.querySelectorAll(".game_button");
@@ -372,8 +341,6 @@ export function colorCell(e) {
     }
   }
 
-  // console.log("counter", counter);
-  // console.log("e.target", e.target);
   msgAboutSolvedNonogram();
 }
 
@@ -408,9 +375,11 @@ export function resetTimer() {
 }
 
 export function saveGame() {
-  // console.log(counter === obj.count);
   if (ifWin) {
-    alert("This game was finish, please choose another nonogaram");
+    setTimeout(() => {
+      createModal(cantSaveSolvedMsg, 'cant-solve-modal', 'cant-save-msg');
+    }, 1);
+    // alert("This game was finish, please choose another nonogaram");
     return;
   }
   //save game field
@@ -451,6 +420,7 @@ export function saveGame() {
     });
     saveGameArray.push(saveGameBlockArray);
     saveGameBlockArray = [];
+    showTooltip();
   });
 
   const savedGame = JSON.parse(JSON.stringify(obj));

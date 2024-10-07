@@ -7,18 +7,22 @@ import {
   saveGame,
   soundOfBlackCellOn, init
 } from './create-new-game.js';
-import fillCellsWithRightSolution from './functions.js';
+import fillCellsWithRightSolution, { showTooltip } from './functions.js';
 const centerSection = document.addEventListener('DOMContentLoaded', () => {
   const { body } = document;
   const main = document.createElement('main');
   const centerS = document.createElement('section');
   // const soundSwitcherTimer = document.createElement('div');
+
+  const timerNameBlock = document.createElement('div');
+  const nonogramName = document.createElement('p');
   const timer = document.createElement('h2');
   const timerMin = document.createElement('span');
   const timerSemicolon = document.createElement('span');
   const timerSec = document.createElement('span');
   const gameField = document.createElement('div');
   const gameFieldLeft = document.createElement('div');
+  const savedTooltip = document.createElement('div');
   const solutionBtn = document.createElement('button');
   const resetbtn = document.createElement('button');
   const savebtn = document.createElement('button');
@@ -32,14 +36,17 @@ const centerSection = document.addEventListener('DOMContentLoaded', () => {
   const gameLeftClue = document.createElement('div');
   const playField = document.createElement('div');
 
-  // outputLastResults();
   playField.addEventListener('click', timerFunc);
 
+  timerNameBlock.classList = 'center-s-timer-name';
+  nonogramName.classList = 'center-s-nonogram-name';
   body.classList = '';
   centerS.classList = 'center-s';
   timer.classList = 'center-s_timer';
   gameField.className = 'game_field';
   gameFieldLeft.className = 'game_field-left';
+  savedTooltip.id = 'saved-tooltip';
+  savedTooltip.classList = 'saved-tooltip';
   solutionBtn.classList = 'dropbtn solutionBtn';
   resetbtn.classList = 'dropbtn resetbtn';
   savebtn.classList = 'dropbtn savebtn';
@@ -55,7 +62,9 @@ const centerSection = document.addEventListener('DOMContentLoaded', () => {
 
   body.append(main);
   main.append(centerS);
-  centerS.append(timer);
+  centerS.append(timerNameBlock);
+  timerNameBlock.append(nonogramName);
+  timerNameBlock.append(timer);
   timer.append(timerMin);
   timer.append(timerSemicolon);
   timer.append(timerSec);
@@ -65,6 +74,7 @@ const centerSection = document.addEventListener('DOMContentLoaded', () => {
   gameFieldLeft.append(resetbtn);
   gameFieldLeft.append(savebtn);
   gameFieldLeft.append(contbtn);
+  gameFieldLeft.append(savedTooltip);
   gameField.append(game);
   game.append(gameWrapper);
   gameWrapper.append(gameOneRow);
@@ -74,10 +84,13 @@ const centerSection = document.addEventListener('DOMContentLoaded', () => {
   gameTwoRow.append(gameLeftClue);
   gameTwoRow.append(playField);
 
+  // gameTemplate.innerHTML = '<span>Airplane</span>';
+  nonogramName.innerHTML = `<span>Airplane</span><span class="center-s-solve-notific"></span>`;
   solutionBtn.innerHTML = 'Solution';
   resetbtn.innerHTML = 'Reset game';
   savebtn.innerHTML = 'Save game';
   contbtn.innerHTML = 'Continue last game';
+  savedTooltip.innerHTML = 'saved';
   timer.innerHTML = '<span>00</span>:</span><span>00</span>';
 
   getGame('airplane');

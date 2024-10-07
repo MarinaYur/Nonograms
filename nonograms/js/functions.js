@@ -30,3 +30,23 @@ export default function fillCellsWithRightSolution() {
     });
 }
 
+export function showTooltip() {
+  const saveBtn = document.querySelector('.savebtn');
+  const tooltip = document.querySelector('.saved-tooltip');
+  tooltip.style.display = 'block';
+  tooltip.style.opacity = '1';
+
+  const saveBtnRect = saveBtn.getBoundingClientRect();
+  // let dskal= saveBtnRect.bottom + '100000';
+  tooltip.style.top = `${saveBtnRect.bottom - 50}px`;
+  tooltip.style.left = `${saveBtnRect.right}px`;
+  console.log(saveBtnRect.bottom, tooltip.style.top);
+
+  setTimeout(() => {
+    console.log('setTimeout');
+    tooltip.style.opacity = '0';
+    setTimeout(() => {
+        tooltip.style.display = 'none';
+    }, 300);
+}, 1000);
+}
