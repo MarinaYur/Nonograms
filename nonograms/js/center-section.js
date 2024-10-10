@@ -14,6 +14,7 @@ const centerSection = document.addEventListener('DOMContentLoaded', () => {
   const centerS = document.createElement('section');
   // const soundSwitcherTimer = document.createElement('div');
 
+  // const applicationName = document.createElement("h1");
   const timerNameBlock = document.createElement('div');
   const nonogramName = document.createElement('p');
   const timer = document.createElement('h2');
@@ -38,6 +39,8 @@ const centerSection = document.addEventListener('DOMContentLoaded', () => {
 
   playField.addEventListener('click', timerFunc);
 
+
+  // applicationName.classList = "application-name";
   timerNameBlock.classList = 'center-s-timer-name';
   nonogramName.classList = 'center-s-nonogram-name';
   body.classList = '';
@@ -61,6 +64,7 @@ const centerSection = document.addEventListener('DOMContentLoaded', () => {
   playField.classList = 'game_play-field';
 
   body.append(main);
+  // main.append(applicationName);
   main.append(centerS);
   centerS.append(timerNameBlock);
   timerNameBlock.append(nonogramName);
@@ -85,6 +89,7 @@ const centerSection = document.addEventListener('DOMContentLoaded', () => {
   gameTwoRow.append(playField);
 
   // gameTemplate.innerHTML = '<span>Airplane</span>';
+  // applicationName.innerHTML = 'Nonograms';
   nonogramName.innerHTML = `<span>Airplane</span><span class="center-s-solve-notific"></span>`;
   solutionBtn.innerHTML = 'Solution';
   resetbtn.innerHTML = 'Reset game';

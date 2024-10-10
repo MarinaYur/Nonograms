@@ -2,20 +2,22 @@
   text-align: center;
   @include media3 {
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
+    // flex-direction: row-reverse;
+    justify-content: end;
   }
 }
 
-.theme-btns {
+.theme-and-sound {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  gap: 3px;
   & > button {
     margin-right: 5px;
     padding: 2px;
     cursor: pointer;
   }
   @include media3 {
+    flex-direction: column-reverse;
     margin: 0;
   }
 }
@@ -35,7 +37,7 @@
   cursor: pointer;
 }
 
-.theme-btns_dark {
+.theme-switcher {
   background-color: black;
   color: white;
   // @include media3 {
@@ -44,6 +46,7 @@
 }
 
 .statistics {
+  margin-top: 5px;
   cursor: pointer;
 }
 

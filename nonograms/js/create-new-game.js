@@ -10,7 +10,7 @@ let hours = 0;
 let allSeconds = 0;
 let ifWin = false;
 let ifSound = true;
-const solveMsg = `Great! You have solved the nonogram in ${allSeconds} seconds!`;
+let solveMsg = '';
 const cantSaveSolvedMsg = 'This game was finish, please choose another nonogaram';
 export let nonogramsBestResults = {};
 
@@ -227,12 +227,15 @@ export function createModal(msg, classStr1, classStr2) {
 
 export function msgAboutSolvedNonogram() {
   const nonogramName = document.querySelector('.center-s-nonogram-name');
+
   if (counter === obj.count) {
     if (ifSound) {
       const audio = new Audio("./../assets/win-sound.mp3");
       audio.play();
     }
     setTimeout(() => {
+      console.log(allSeconds)
+      solveMsg = `Great! You have solved the nonogram in ${allSeconds} seconds!`
       createModal(solveMsg, 'solve-modal', 'solveMsg');
     }, 1);
     clearInterval(interval);
@@ -338,6 +341,8 @@ export function colorCell(e) {
 }
 
 export function resetGame() {
+  const nonogramName = document.querySelector('.center-s-nonogram-name');
+  nonogramName.childNodes[1].innerHTML = '';
   resetTimer();
   counter = 0;
   ifWin = false;

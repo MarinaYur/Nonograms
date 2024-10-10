@@ -60,6 +60,7 @@ main {
   max-width: 1440px;
   width: 100%;
   justify-content: space-between;
+  gap: 10px;
 }
 @media screen and (max-width: 1150px) {
   main {
@@ -195,20 +196,8 @@ p {
   width: 100%;
   justify-content: space-between;
 }
-@media screen and (max-width: 820px) {
-  .game_field {
-    flex-direction: column;
-  }
-}
-
-@media screen and (max-width: 820px) {
-  .game_field-left {
-    display: flex;
-    justify-content: center;
-  }
-}
-
-.game_1row, .game_2row {
+.game_1row,
+.game_2row {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
@@ -251,6 +240,14 @@ p {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+@media screen and (max-width: 820px) {
+  .game_button,
+  .game_top-button,
+  .game_left-button {
+    width: 14px;
+    height: 14px;
+  }
 }
 
 .game_left-clue {
@@ -295,6 +292,11 @@ p {
 .center-s {
   min-width: 634px;
   margin: 0 auto;
+}
+@media screen and (max-width: 820px) {
+  .center-s {
+    width: 100%;
+  }
 }
 
 .center-s-timer-name {
@@ -380,7 +382,8 @@ p {
 .application-name {
   margin: 0 auto;
   font-family: "Snell Roundhand", cursive;
-  font-family: 900;
+  font-weight: 700;
+  text-align: center;
 }
 
 .nonogram-sizes {
@@ -435,22 +438,23 @@ p {
 @media screen and (max-width: 820px) {
   .right-s {
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
+    justify-content: end;
   }
 }
 
-.theme-btns {
+.theme-and-sound {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  gap: 3px;
 }
-.theme-btns > button {
+.theme-and-sound > button {
   margin-right: 5px;
   padding: 2px;
   cursor: pointer;
 }
 @media screen and (max-width: 820px) {
-  .theme-btns {
+  .theme-and-sound {
+    flex-direction: column-reverse;
     margin: 0;
   }
 }
@@ -469,12 +473,13 @@ p {
   cursor: pointer;
 }
 
-.theme-btns_dark {
+.theme-switcher {
   background-color: black;
   color: white;
 }
 
 .statistics {
+  margin-top: 5px;
   cursor: pointer;
 }
 

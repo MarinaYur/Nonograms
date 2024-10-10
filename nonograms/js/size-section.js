@@ -33,9 +33,10 @@ const sizeSection = document.addEventListener("DOMContentLoaded", () => {
   nonogramSizes.classList = "nonogram-sizes";
   size.classList = "size";
   randomBtn.classList = "dropbtn randombtn";
+centerS.prepend(nonogramSizes);
+  centerS.prepend(applicationName);
 
-  centerS.prepend(nonogramSizes);
-  nonogramSizes.append(applicationName);
+  // nonogramSizes.append(applicationName);
   nonogramSizes.append(size);
   size.append(randomBtn);
 
@@ -47,8 +48,7 @@ const sizeSection = document.addEventListener("DOMContentLoaded", () => {
   const rightS = document.createElement("section");
   const theme = document.createElement("div");
   const soundSwitcher = document.createElement("div");
-  const darkThemeBtn = document.createElement("button");
-  const lightThemeBtn = document.createElement("button");
+  const themeSwitcher = document.createElement("button");
   const statistics = document.createElement("button");
   const resultsModal = document.createElement("div");
   const savedResults = document.createElement("div");
@@ -56,9 +56,9 @@ const sizeSection = document.addEventListener("DOMContentLoaded", () => {
   const listOfBestResults = document.createElement("ol");
 
   rightS.classList = "right-s";
-  theme.classList = "theme-btns";
+  theme.classList = "theme-and-sound";
   soundSwitcher.classList = "sound-switcher";
-  darkThemeBtn.classList = "theme-btns_dark";
+  themeSwitcher.classList = "theme-switcher";
   statistics.classList = "statistics";
   resultsModal.classList = 'modal-results';
   savedResults.classList = "saved-results";
@@ -66,16 +66,15 @@ const sizeSection = document.addEventListener("DOMContentLoaded", () => {
   main.append(rightS);
   rightS.append(soundSwitcher);
   rightS.append(theme);
-  theme.append(darkThemeBtn);
-  theme.append(lightThemeBtn);
+  theme.append(soundSwitcher);
+  theme.append(themeSwitcher);
   rightS.append(statistics);
   rightS.append(resultsModal);
   resultsModal.append(savedResults);
   savedResults.append(headOfSaveResults);
   savedResults.append(listOfBestResults);
 
-  darkThemeBtn.innerHTML = "Dark / Light";
-  lightThemeBtn.innerHTML = "theme";
+  themeSwitcher.innerHTML = "Theme";
   statistics.innerHTML = "Statistics";
 
 
@@ -159,7 +158,7 @@ const sizeSection = document.addEventListener("DOMContentLoaded", () => {
   }
 
   randomBtn.addEventListener("click", chooseRandomTemplate);
-  theme.addEventListener("click", function () {
+  themeSwitcher.addEventListener("click", function () {
     if (document.documentElement.hasAttribute("theme")) {
       document.documentElement.removeAttribute("theme");
       localStorage.removeItem("theme");

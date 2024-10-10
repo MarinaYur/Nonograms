@@ -1,6 +1,9 @@
 .center-s {
   min-width: 634px;
   margin: 0 auto;
+  @include media3 {
+    width: 100%;
+  }
 }
 
 .center-s-timer-name {
@@ -90,7 +93,8 @@
 .application-name {
   margin: 0 auto;
   font-family: "Snell Roundhand", cursive;
-  font-family: 900;
+  font-weight: 700;
+  text-align: center;
   @extend %rainbow-font;
 }
 
