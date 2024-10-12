@@ -2,7 +2,7 @@ import { dino, frog, bow, girl, duck } from "./data15x15.js";
 import { airplane, hourglass, heart, five, dog } from "./data5x5.js";
 import { kettle, apple, cat, saucepan, lama } from "./data10x10.js";
 import { centerSection } from "./center-section.js";
-import { showTooltip } from "./functions.js";
+import { showTooltip, setPlayFieldSizes } from "./functions.js";
 
 let sec = 0;
 let min = 0;
@@ -39,12 +39,15 @@ map.set("five", five);
 map.set("dog", dog);
 
 export function createPlayField(gameName) {
-
+let objSizes = {};
+window.onresize = () => {
+  objSizes = setPlayFieldSizes(gameName);
+};
   const playField = document.querySelector(".game_play-field");
   playField.innerHTML = "";
   playField.style.width = gameName.playFieldWidth;
   let count = 0;
-  console.log("gameName.game before for", gameName.game);
+  console.log("objSizes", objSizes);
   for (let i = 0; i < gameName.game.length; i += 1) {
     const gameButtonBlock = document.createElement("div");
     gameButtonBlock.className = "game_button-block";
@@ -77,6 +80,7 @@ export function createPlayField(gameName) {
 }
 
 export function createTopClue(gameName) {
+
   const gameTopClue = document.querySelector(".game_top-clue");
   gameTopClue.innerHTML = "";
   for (let i = 0; i < gameName.top.length; i += 1) {

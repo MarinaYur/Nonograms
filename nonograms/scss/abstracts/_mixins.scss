@@ -9,3 +9,7 @@
 @mixin media3 {
   @media screen and (max-width: 820px) {@content};
 }
+
+@mixin media4 {
+  @media screen and (max-width: 640px) {@content};
+}

@@ -1,5 +1,8 @@
 .game {
   align-self: end;
+  @include media3 {
+    margin: auto;
+  }
 }
 
 .game_wrapper {

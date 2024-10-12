@@ -5,14 +5,14 @@
   width: 100%;
   justify-content: space-between;
   @include media3 {
-    // flex-direction: column;
+    flex-direction: column-reverse;
   }
 }
 
 .game_field-left {
   @include media3 {
-    // display: flex;
-    // justify-content: center;
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -60,10 +60,10 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  @include media3 {
-    width: 14px;
-    height: 14px;
-  }
+  // @include media3 {
+  //   width: 14px;
+  //   height: 14px;
+  // }
 }
 
 .game_left-clue {

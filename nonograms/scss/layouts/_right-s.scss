@@ -27,14 +27,21 @@
   width: 30px;
   background: url("./../assets/sound_on.svg") no-repeat center/cover;
   cursor: pointer;
+  @include media3 {
+    height: 20px;
+    width: 20px;
+  }
 }
 
 .sound-switcher--active {
   height: 30px;
   width: 30px;
   background: url("./../assets/sound_off.svg") no-repeat center/cover;
-
   cursor: pointer;
+  @include media3 {
+    height: 20px;
+    width: 20px;
+  }
 }
 
 .theme-switcher {
@@ -48,6 +55,9 @@
 .statistics {
   margin-top: 5px;
   cursor: pointer;
+  @include media3 {
+    padding: 0;
+  }
 }
 
 .modal-results {
@@ -81,19 +91,17 @@
 }
 
 .saved-results {
-  width: 20%;
   font-size: 17px;
   margin: 0 auto;
   background-color: var(--textBtn-color);
   box-shadow:
-  0 0px rgb(86,38,6),
-  0 3px 15px rgb(237 21 21),
-  inset 0 1px rgba(255,255,255,.3),
-  inset 0 0 3px rgba(255,255,255,.5);
+    0 0px rgb(86, 38, 6),
+    0 3px 15px rgb(237 21 21),
+    inset 0 1px rgba(255, 255, 255, 0.3),
+    inset 0 0 3px rgba(255, 255, 255, 0.5);
 
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
-
 
   & ol {
     color: darkred;
@@ -117,7 +125,7 @@
 .saved-res {
   display: flex;
   justify-content: space-between;
-    padding: 3px 14px 3px 14px;
+  padding: 3px 14px 3px 14px;
   border: 1px solid rgb(80, 32, 0);
   line-height: 25px;
   @include media3 {
