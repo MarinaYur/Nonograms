@@ -67,7 +67,7 @@ centerS.prepend(nonogramSizes);
   rightS.append(soundSwitcher);
   rightS.append(theme);
   theme.append(soundSwitcher);
-  theme.append(themeSwitcher);
+  // theme.append(themeSwitcher);
   rightS.append(statistics);
   rightS.append(resultsModal);
   resultsModal.append(savedResults);

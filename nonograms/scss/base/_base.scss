@@ -8,9 +8,12 @@
   --panel-bg-color: bisque;
   --dropdown-content-bg-color: rgb(241 200 138);
   ----hover-bg-color: rgb(241 200 138);
-  --text-color: rgb(80,32,0);
+  // --text-color: rgb(80,32,0);
   --textBtn-color: #FFFFFF;
   --cross-img: url(./../assets/cross.gif);
+  --modal-res-bg: rgba(134, 62, 0, 0.9);
+  --border-color: rgb(80, 32, 0);
+  --btn-border-color: rgb(215, 197, 79);
 }
 
 :root[theme="dark"] {
