@@ -1,0 +1,112 @@
+.center-s {
+  max-width: 634px;
+  width: 100%;
+  margin: 0 auto;
+  // @include media3 {
+  //   max-width: 634px;
+  //   width: 100%;
+  // }
+}
+
+.center-s-timer-name {
+  display: flex;
+  justify-content: space-between;
+  padding: 47px 0 15px 0;
+
+}
+
+.center-s-timer-name::first-letter {
+  text-transform: uppercase;
+}
+
+.center-s-nonogram-name {
+  margin: auto;
+  font-size: 34px;
+  color: #af7234;
+  @include media3 {
+    margin: auto;
+  }
+}
+
+.center-s-solve-notific {
+  color: #ff3333;
+}
+
+.center-s_timer {
+  text-align: right;
+  @include media3 {
+    text-align: center;
+    margin: auto;
+  }
+}
+
+.solve-modal,
+.cant-solve-modal {
+  position: absolute;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border: 8px solid rgb(165, 42, 42);
+  border-radius: 65px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 40%;
+  height: 250px;
+  z-index: 3;
+  background-color: #fbfe83;
+  animation: textflow 5s linear infinite;
+  & .solveMsg {
+    font-family: "Snell Roundhand", cursive;
+    font-size: 45px;
+    text-align: center;
+    background: linear-gradient(
+      90deg,
+      #e933ff,
+      #ffb400,
+      #ff3333,
+      #334dff,
+      #e933ff
+    );
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  & .cant-save-msg {
+    font-size: 45px;
+    font-weight: 700;
+    text-align: center;
+    color: #000000;
+  }
+}
+
+.cant-solve-modal {
+  background-image: url(./../../assets/atttention.jpeg);
+  background-size: cover;
+}
+
+@keyframes textflow {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: 200% center;
+  }
+}
+
+.application-name {
+  margin: 0 auto;
+  font-family: "Snell Roundhand", cursive;
+  font-weight: 700;
+  text-align: center;
+  @extend %rainbow-font;
+}
+
+.nonogram-sizes {
+  @extend %flex-center;
+  flex-direction: column;
+  row-gap: 25px;
+}

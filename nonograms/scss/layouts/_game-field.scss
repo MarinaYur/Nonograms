@@ -1,0 +1,89 @@
+.game_field {
+  display: flex;
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+  justify-content: space-between;
+  @include media3 {
+    flex-direction: column-reverse;
+  }
+}
+
+.game_field-left {
+  @include media3 {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.game_1row,
+.game_2row {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.game_play-field {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border-color);
+}
+
+.game_top-clue {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #80808040;
+  border-left: 1.5px solid var(--border-color);
+  border-bottom: 0px;
+}
+
+.game_button-block,
+.game_button-block1 {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--border-color);
+}
+
+.game_button-block {
+  width: 100%;
+}
+
+.game_button,
+.game_top-button,
+.game_left-button {
+  display: flex;
+  margin: 0;
+  width: 25px;
+  height: 25px;
+  border: 0.1px solid var(--btn-border-color);
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  // @include media3 {
+  //   width: 14px;
+  //   height: 14px;
+  // }
+}
+
+.game_left-clue {
+  background-color: #80808040;
+  border-right: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
+}
+
+.game_button--colored {
+  background-color: var(--border-color);
+}
+
+.game_button--crossed {
+  background-image: var(--cross-img);
+  background-position: center;
+  background-size: contain;
+}
+
+.game_button--crossed-clue {
+  background-image: var(--cross-img);
+  background-position: center;
+  background-size: cover;
+}

@@ -1,0 +1,134 @@
+.right-s {
+  text-align: center;
+  @include media3 {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+  }
+}
+
+.theme-and-sound {
+  display: flex;
+  justify-content: space-between;
+  gap: 3px;
+  & > button {
+    margin-right: 5px;
+    padding: 2px;
+    cursor: pointer;
+  }
+  @include media3 {
+    flex-direction: column;
+    margin: 0;
+  }
+}
+
+.sound-switcher {
+  height: 30px;
+  width: 30px;
+  background: url("./../assets/sound_on.svg") no-repeat center/cover;
+  cursor: pointer;
+  @include media3 {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.sound-switcher--active {
+  height: 30px;
+  width: 30px;
+  background: url("./../assets/sound_off.svg") no-repeat center/cover;
+  cursor: pointer;
+  @include media3 {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+// .theme-switcher {
+//   background-color: black;
+//   color: white;
+// }
+
+.statistics {
+  margin-top: 5px;
+  cursor: pointer;
+  @include media3 {
+    padding: 0;
+  }
+}
+
+.modal-results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2px;
+  border: 1px solid grey;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  opacity: 0;
+  transform: scale(0.1);
+  font-size: 27px;
+  transition: all 0.5s ease;
+  background-color: var(--modal-res-bg);
+
+  &__active {
+    transition: all 0.5s ease;
+    transform: scale(1);
+    z-index: 100;
+    opacity: 1;
+    top: 0;
+    left: 0;
+  }
+}
+
+.saved-results {
+  font-size: 17px;
+  margin: 0 auto;
+  background-color: var(--textBtn-color);
+  box-shadow:
+    0 0px rgb(86, 38, 6),
+    0 3px 15px rgb(237 21 21),
+    inset 0 1px rgba(255, 255, 255, 0.3),
+    inset 0 0 3px rgba(255, 255, 255, 0.5);
+
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+
+  & ol {
+    color: darkred;
+    font-size: larger;
+    font-family: 500;
+    border: 2px solid var(--border-color);
+  }
+
+  & h2 {
+    color: #783301;
+    font-size: 35px;
+    font-family: "Snell Roundhand", cursive;
+    font-family: 900;
+  }
+
+  @include media2 {
+    font-size: 17px;
+  }
+}
+
+.saved-res {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 14px 3px 14px;
+  border: 1px solid var(--border-color);
+  line-height: 25px;
+  @include media3 {
+    line-height: 19px;
+  }
+}
+
+.saved-res div {
+  text-align: end;
+}

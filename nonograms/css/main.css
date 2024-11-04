@@ -1,0 +1,637 @@
+@charset "UTF-8";
+.nonogram-sizes, main {
+  display: flex;
+  justify-content: center;
+}
+
+footer span, .application-name, body .greetings {
+  background: linear-gradient(90deg, #783301, #ffab44, #a15025, #af7234, #783301);
+  background-size: 200% auto;
+  background-clip: text;
+  font-size: 60px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textflow 5s linear infinite;
+}
+
+@keyframes textflow {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: 200% center;
+  }
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --panel-bg-color: bisque;
+  --dropdown-content-bg-color: rgb(241 200 138);
+  ----hover-bg-color: rgb(241 200 138);
+  --textBtn-color: #FFFFFF;
+  --cross-img: url(./../assets/cross.gif);
+  --modal-res-bg: rgba(134, 62, 0, 0.9);
+  --border-color: rgb(80, 32, 0);
+  --btn-border-color: rgb(215, 197, 79);
+}
+
+:root[theme=dark] {
+  --panel-bg-color: #2f3542;
+  --hover-bg-color: #57606f;
+  --text-color: #ced6e0;
+  --dropdown-content-bg-color: #57606f;
+  --cross-img: url(./../assets/light-cross.png);
+}
+
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100dvh;
+  background-color: var(--panel-bg-color);
+  padding-top: 10px;
+}
+main {
+  max-width: 1440px;
+  width: 100%;
+  justify-content: space-between;
+  gap: 10px;
+}
+@media screen and (max-width: 1150px) {
+  main {
+    gap: 20px;
+  }
+}
+@media screen and (max-width: 920px) {
+  main {
+    padding: 130px 10px 0 10px;
+  }
+}
+@media screen and (max-width: 820px) {
+  main {
+    flex-direction: column-reverse;
+    padding: 9px 1px 0 1px;
+  }
+}
+
+p {
+  font-size: 20px;
+  padding-right: 25px;
+}
+
+.size {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+@media screen and (max-width: 920px) {
+  .size {
+    justify-content: center;
+  }
+}
+
+.size_p {
+  line-height: 19px;
+}
+@media screen and (max-width: 920px) {
+  .size_p {
+    display: none;
+  }
+}
+
+/* Стиль Выпадающей Кнопки */
+.dropbtn {
+  width: 80px;
+  margin: 0px 5px;
+  color: var(--text-color);
+  padding: 2px;
+  font-size: 16px;
+  background-color: rgba(128, 128, 128, 0.3607843137);
+  cursor: pointer;
+}
+
+/* контейнер <div> - необходим для размещения выпадающего содержимого */
+.size_dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.randombtn,
+.dropbtn,
+.dropdown-content,
+.statistics,
+.theme-switcher {
+  display: inline-block;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+  user-select: none;
+  padding: 0.7em;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  outline: none;
+  background: rgb(147, 80, 36) linear-gradient(rgb(106, 58, 26), rgb(147, 80, 36) 80%);
+  box-shadow: 0 6px rgb(86, 38, 6), 0 3px 15px rgba(0, 0, 0, 0.4), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 0 3px rgba(255, 255, 255, 0.5);
+  transition: 0.2s;
+}
+@media screen and (max-width: 820px) {
+  .randombtn,
+  .dropbtn,
+  .dropdown-content,
+  .statistics,
+  .theme-switcher {
+    padding: 0.3em;
+  }
+}
+
+.randombtn:hover,
+.dropbtn:hover,
+.statistics:hover {
+  background: rgb(167, 91, 41) linear-gradient(rgb(126, 69, 31), rgb(167, 91, 41) 80%);
+}
+
+/* Выпадающей контент (по умолчанию скрыт) */
+.dropdown-content {
+  margin-top: 25px;
+  display: none;
+  position: absolute;
+  background: rgb(167, 91, 41) linear-gradient(rgb(126, 69, 31), rgb(167, 91, 41) 80%);
+  border: 1px solid grey;
+  min-width: 100px;
+  z-index: 1;
+}
+
+/* Ссылки внутри выпадающего списка */
+.dropdown-content span {
+  color: var(--textBtn-color);
+  padding: 5px 10px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.dropdown-content span::first-letter {
+  text-transform: uppercase;
+}
+
+.dropdown-content .selected {
+  text-decoration: underline;
+}
+
+.dropdown-content .selected::first-letter {
+  color: rgb(253, 0, 0);
+  font-weight: 900;
+  font-size: large;
+}
+
+/* Изменить цвет выпадающих ссылок при наведении */
+.dropdown-content span:hover {
+  font-weight: 600;
+}
+
+/* Показать выпадающее меню при наведении */
+.size_dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Изменить цвет фона выпадающего кнопка при отображении выпадающего списка */
+.size_dropdown:hover .dropbtn {
+  background-color: var(--dropdown-content-bg-color);
+}
+
+.game_field {
+  display: flex;
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+  justify-content: space-between;
+}
+@media screen and (max-width: 820px) {
+  .game_field {
+    flex-direction: column-reverse;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .game_field-left {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.game_1row,
+.game_2row {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.game_play-field {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border-color);
+}
+
+.game_top-clue {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgba(128, 128, 128, 0.2509803922);
+  border-left: 1.5px solid var(--border-color);
+  border-bottom: 0px;
+}
+
+.game_button-block,
+.game_button-block1 {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--border-color);
+}
+
+.game_button-block {
+  width: 100%;
+}
+
+.game_button,
+.game_top-button,
+.game_left-button {
+  display: flex;
+  margin: 0;
+  width: 25px;
+  height: 25px;
+  border: 0.1px solid var(--btn-border-color);
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.game_left-clue {
+  background-color: rgba(128, 128, 128, 0.2509803922);
+  border-right: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
+}
+
+.game_button--colored {
+  background-color: var(--border-color);
+}
+
+.game_button--crossed {
+  background-image: var(--cross-img);
+  background-position: center;
+  background-size: contain;
+}
+
+.game_button--crossed-clue {
+  background-image: var(--cross-img);
+  background-position: center;
+  background-size: cover;
+}
+
+.game {
+  align-self: end;
+}
+@media screen and (max-width: 820px) {
+  .game {
+    margin: auto;
+  }
+}
+
+.game_wrapper {
+  border: 1px solid rgb(80, 32, 0);
+  border-radius: 5px;
+  outline: none;
+  box-shadow: 0 0px rgb(86, 38, 6), 0 3px 15px rgba(0, 0, 0, 0.4), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 0 3px rgba(255, 255, 255, 0.5);
+  transition: 0.2s;
+}
+@media screen and (max-width: 820px) {
+  .game_wrapper {
+    border: 0px solid var(--text-color);
+  }
+}
+
+.center-s {
+  max-width: 634px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.center-s-timer-name {
+  display: flex;
+  justify-content: space-between;
+  padding: 47px 0 15px 0;
+}
+
+.center-s-timer-name::first-letter {
+  text-transform: uppercase;
+}
+
+.center-s-nonogram-name {
+  margin: auto;
+  font-size: 34px;
+  color: #af7234;
+}
+@media screen and (max-width: 820px) {
+  .center-s-nonogram-name {
+    margin: auto;
+  }
+}
+
+.center-s-solve-notific {
+  color: #ff3333;
+}
+
+.center-s_timer {
+  text-align: right;
+}
+@media screen and (max-width: 820px) {
+  .center-s_timer {
+    text-align: center;
+    margin: auto;
+  }
+}
+
+.solve-modal,
+.cant-solve-modal {
+  position: absolute;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border: 8px solid rgb(165, 42, 42);
+  border-radius: 65px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 40%;
+  height: 250px;
+  z-index: 3;
+  background-color: #fbfe83;
+  animation: textflow 5s linear infinite;
+}
+.solve-modal .solveMsg,
+.cant-solve-modal .solveMsg {
+  font-family: "Snell Roundhand", cursive;
+  font-size: 45px;
+  text-align: center;
+  background: linear-gradient(90deg, #e933ff, #ffb400, #ff3333, #334dff, #e933ff);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.solve-modal .cant-save-msg,
+.cant-solve-modal .cant-save-msg {
+  font-size: 45px;
+  font-weight: 700;
+  text-align: center;
+  color: #000000;
+}
+
+.cant-solve-modal {
+  background-image: url(./../../assets/atttention.jpeg);
+  background-size: cover;
+}
+
+@keyframes textflow {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: 200% center;
+  }
+}
+.application-name {
+  margin: 0 auto;
+  font-family: "Snell Roundhand", cursive;
+  font-weight: 700;
+  text-align: center;
+}
+
+.nonogram-sizes {
+  flex-direction: column;
+  row-gap: 25px;
+}
+
+.solutionBtn,
+.resetbtn,
+.savebtn,
+.contbtn {
+  display: block;
+  margin: 10px;
+  font-size: 15px;
+}
+
+.solutionBtn:hover,
+.resetbtn:hover,
+.savebtn:hover,
+.contbtn:hover {
+  background-color: var(--hover-bg-color);
+}
+
+.savebtn:active,
+.solutionBtn:active,
+.resetbtn:active,
+.contbtn:active,
+.randombtn:active {
+  color: #fbfe83;
+  transform: scale(1.1);
+}
+
+#saved-tooltip {
+  position: absolute;
+  display: none;
+  background-color: antiquewhite;
+  z-index: 10;
+  border: 1px solid rgb(165, 42, 42);
+  border-radius: 5px;
+  background-color: #fbfe83;
+  padding: 16px;
+}
+
+.saved-tooltip {
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.right-s {
+  text-align: center;
+}
+@media screen and (max-width: 820px) {
+  .right-s {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+  }
+}
+
+.theme-and-sound {
+  display: flex;
+  justify-content: space-between;
+  gap: 3px;
+}
+.theme-and-sound > button {
+  margin-right: 5px;
+  padding: 2px;
+  cursor: pointer;
+}
+@media screen and (max-width: 820px) {
+  .theme-and-sound {
+    flex-direction: column;
+    margin: 0;
+  }
+}
+
+.sound-switcher {
+  height: 30px;
+  width: 30px;
+  background: url("./../assets/sound_on.svg") no-repeat center/cover;
+  cursor: pointer;
+}
+@media screen and (max-width: 820px) {
+  .sound-switcher {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.sound-switcher--active {
+  height: 30px;
+  width: 30px;
+  background: url("./../assets/sound_off.svg") no-repeat center/cover;
+  cursor: pointer;
+}
+@media screen and (max-width: 820px) {
+  .sound-switcher--active {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.statistics {
+  margin-top: 5px;
+  cursor: pointer;
+}
+@media screen and (max-width: 820px) {
+  .statistics {
+    padding: 0;
+  }
+}
+
+.modal-results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2px;
+  border: 1px solid grey;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  opacity: 0;
+  transform: scale(0.1);
+  font-size: 27px;
+  transition: all 0.5s ease;
+  background-color: var(--modal-res-bg);
+}
+.modal-results__active {
+  transition: all 0.5s ease;
+  transform: scale(1);
+  z-index: 100;
+  opacity: 1;
+  top: 0;
+  left: 0;
+}
+
+.saved-results {
+  font-size: 17px;
+  margin: 0 auto;
+  background-color: var(--textBtn-color);
+  box-shadow: 0 0px rgb(86, 38, 6), 0 3px 15px rgb(237, 21, 21), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 0 3px rgba(255, 255, 255, 0.5);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+.saved-results ol {
+  color: darkred;
+  font-size: larger;
+  font-family: 500;
+  border: 2px solid var(--border-color);
+}
+.saved-results h2 {
+  color: #783301;
+  font-size: 35px;
+  font-family: "Snell Roundhand", cursive;
+  font-family: 900;
+}
+@media screen and (max-width: 920px) {
+  .saved-results {
+    font-size: 17px;
+  }
+}
+
+.saved-res {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 14px 3px 14px;
+  border: 1px solid var(--border-color);
+  line-height: 25px;
+}
+@media screen and (max-width: 820px) {
+  .saved-res {
+    line-height: 19px;
+  }
+}
+
+.saved-res div {
+  text-align: end;
+}
+
+footer {
+  align-self: center;
+  max-width: 1300px;
+  width: 100%;
+  border-top: 2px solid #783301;
+  border-top-left-radius: 45px;
+  border-top-right-radius: 55px;
+}
+
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  border-radius: 25px;
+  padding: 10px;
+}
+
+.footer__git-logo,
+.footer__rss-logo {
+  width: 3.5rem;
+  height: 3.5rem;
+  background-size: cover;
+}
+
+.footer__git-logo {
+  border-radius: 50%;
+  background-image: url("./../assets/git-logo.png");
+}
+
+.footer__rss-logo {
+  background-image: url("./../assets/rss-logo.svg");
+}
+
+footer span {
+  font-size: 35px;
+  color: #efea66;
+  font-weight: 900;
+}/*# sourceMappingURL=main.css.map */
