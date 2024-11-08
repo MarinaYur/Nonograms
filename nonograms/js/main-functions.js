@@ -2,7 +2,7 @@ import { dino, frog, bow, girl, duck } from "./data15x15.js";
 import { airplane, hourglass, heart, five, dog } from "./data5x5.js";
 import { kettle, apple, cat, saucepan, lama } from "./data10x10.js";
 import { centerSection } from "./center-section.js";
-import { showTooltip, setPlayFieldSizes } from "./functions.js";
+import { showTooltip, setPlayFieldSizes, isShownSol, setIsShownSol } from "./functions.js";
 
 let sec = 0;
 let min = 0;
@@ -146,7 +146,6 @@ export function saveToStorage() {
     nonogramsBestResults = JSON.parse(localStorage.nonograms);
   }
   const length = nonogramsBestResults.length;
-console.log(nonogramsBestResults.length);
     if (length !== 10) {
       nonogramsBestResults[length] = gameResultObj;
     } else if (gameResultObj.allSeconds < nonogramsBestResults[length - 1].allSeconds){
@@ -350,6 +349,7 @@ export function resetGame() {
   resetTimer();
   counter = 0;
   ifWin = false;
+  setIsShownSol();
   const gameButtons = document.querySelectorAll(".game_button");
   gameButtons.forEach((gameButton) => {
     gameButton.classList.remove("game_button--colored");
@@ -377,11 +377,10 @@ export function resetTimer() {
 }
 
 export function saveGame() {
-  if (ifWin) {
+  if (ifWin || isShownSol) {
     setTimeout(() => {
       createModal(cantSaveSolvedMsg, 'cant-solve-modal', 'cant-save-msg');
     }, 1);
-    // alert("This game was finish, please choose another nonogaram");
     return;
   }
   //save game field
