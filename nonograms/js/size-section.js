@@ -1,9 +1,10 @@
+import { setIsShownSol } from "./functions.js";
 import {
   getGame,
   resetTimer,
   outputLastResults,
   switchSound,
-} from "./create-new-game.js";
+} from "./main-functions.js";
 
 const sizeSection = document.addEventListener("DOMContentLoaded", () => {
   let arrOfTemplates = [
@@ -98,6 +99,7 @@ centerS.prepend(nonogramSizes);
         prevTemplate = target.innerHTML;
         getGame(target.innerHTML.toLowerCase());
         resetTimer(1);
+        setIsShownSol();
       }
     });
   });

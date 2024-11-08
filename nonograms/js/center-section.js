@@ -6,7 +6,7 @@ import {
   timerFunc,
   saveGame,
   soundOfBlackCellOn, init
-} from './create-new-game.js';
+} from './main-functions.js';
 import fillCellsWithRightSolution, { showTooltip } from './functions.js';
 const centerSection = document.addEventListener('DOMContentLoaded', () => {
   const { body } = document;

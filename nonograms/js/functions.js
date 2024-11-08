@@ -1,18 +1,20 @@
 import {
-  obj,
-  getGame,
-  counter,
-  colorCell,
-  interval,
-} from "./create-new-game.js";
-import { airplane } from "./data5x5.js";
+  obj
+} from "./main-functions.js";
+
+export let isShownSol = false;
+
+export const setIsShownSol = () => {
+  isShownSol = false;
+};
 
 export default function fillCellsWithRightSolution() {
-  // console.log('fillCellsWithRightSolution func');
-  // console.log(obj);
   const playField = document.querySelector(".game_play-field");
   playField.innerHTML = "";
-  console.log("playField", playField);
+  isShownSol = true;
+  const nonogramName = document.querySelector('.center-s-nonogram-name');
+  nonogramName.childNodes[1].innerHTML +=  ' solution shown';
+
   playField.style.width = obj.playFieldWidth;
   for (let i = 0; i < obj.game.length; i += 1) {
     const gameButtonBlock = document.createElement("div");
@@ -22,7 +24,7 @@ export default function fillCellsWithRightSolution() {
       const gameButton = document.createElement("div");
       gameButton.classList = "game_button g-button";
       gameButtonBlock.append(gameButton);
-      if (obj.game[i][j] === 1) {
+      if (obj.game[i][j] === 1 || obj.game[i][j] === 5) {
         // gameButton.innerHTML = '1';
         gameButton.classList.add("right");
         gameButton.classList.add("game_button--colored");
@@ -34,6 +36,7 @@ export default function fillCellsWithRightSolution() {
   gameButtons.forEach((gameButton) => {
     gameButton.style.pointerEvents = "none";
   });
+
 }
 
 export function showTooltip() {
@@ -43,7 +46,6 @@ export function showTooltip() {
   tooltip.style.opacity = "1";
 
   const saveBtnRect = saveBtn.getBoundingClientRect();
-  // let dskal= saveBtnRect.bottom + '100000';
   tooltip.style.top = `${saveBtnRect.bottom - 50}px`;
   tooltip.style.left = `${saveBtnRect.right}px`;
   console.log(saveBtnRect.bottom, tooltip.style.top);
