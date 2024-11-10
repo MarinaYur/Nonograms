@@ -50,7 +50,7 @@ footer span, .application-name, body .greetings {
 body {
   position: relative;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: center;
   align-items: center;
   justify-content: space-between;
@@ -413,6 +413,7 @@ p {
   font-family: "Snell Roundhand", cursive;
   font-weight: 700;
   text-align: center;
+  padding-bottom: 21px;
 }
 
 .nonogram-sizes {
