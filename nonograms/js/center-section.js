@@ -63,7 +63,7 @@ const centerSection = document.addEventListener('DOMContentLoaded', () => {
   gameLeftClue.classList = 'game_left-clue';
   playField.classList = 'game_play-field';
 
-  body.append(main);
+  body.prepend(main);
   // main.append(applicationName);
   main.append(centerS);
   centerS.append(timerNameBlock);
