@@ -2,7 +2,7 @@ footer {
   align-self: center;
   max-width: 1300px;
   width: 100%;
-  border-top: 2px solid #783301;
+  border-top: 2px solid var(--footer-border-top);
   border-top-left-radius: 45px;
   border-top-right-radius: 55px;
 }

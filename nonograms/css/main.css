@@ -1,11 +1,10 @@
-@charset "UTF-8";
 .nonogram-sizes, main {
   display: flex;
   justify-content: center;
 }
 
 footer span, .application-name, body .greetings {
-  background: linear-gradient(90deg, #783301, #ffab44, #a15025, #af7234, #783301);
+  background: var(--font-bg);
   background-size: 200% auto;
   background-clip: text;
   font-size: 60px;
@@ -32,19 +31,50 @@ footer span, .application-name, body .greetings {
   --panel-bg-color: bisque;
   --dropdown-content-bg-color: rgb(241 200 138);
   ----hover-bg-color: rgb(241 200 138);
+  --text-color: #000000;
+  --game-clue-color: #000000;
   --textBtn-color: #FFFFFF;
-  --cross-img: url(./../assets/cross.gif);
+  --cross-img: url("./../assets/cross.gif");
   --modal-res-bg: rgba(134, 62, 0, 0.9);
   --border-color: rgb(80, 32, 0);
   --btn-border-color: rgb(215, 197, 79);
+  --main-color: rgb(147, 80, 36) linear-gradient(rgb(106, 58, 26), rgb(147, 80, 36) 80%);
+  --main-color-hover: rgb(167, 91, 41) linear-gradient(rgb(126, 69, 31), rgb(167, 91, 41) 80%);
+  --box-shadow: 0 0px rgb(86, 38, 6), 0 3px 15px rgb(237, 21, 21), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 0 3px rgba(255, 255, 255, 0.5);
+  --font-bg: linear-gradient(90deg, #783301, #ffab44, #a15025, #af7234, #783301);
+  --footer-border-top: #783301;
+  --nonograms-name: #af7234;
+  --btns-box-shadow: 0 6px rgb(86, 38, 6),
+  0 3px 15px rgba(0, 0, 0, 0.4),
+  inset 0 1px rgba(255, 255, 255, 0.3),
+  inset 0 0 3px rgba(255, 255, 255, 0.5);
+  --sound-on: url("./../assets/sound_on.svg");
+  --sound-off: url("./../assets/sound_off.svg");
 }
 
 :root[theme=dark] {
-  --panel-bg-color: #2f3542;
-  --hover-bg-color: #57606f;
-  --text-color: #ced6e0;
-  --dropdown-content-bg-color: #57606f;
-  --cross-img: url(./../assets/light-cross.png);
+  --panel-bg-color: #3d4556;
+  --dropdown-content-bg-color: rgb(60, 60, 60);
+  --hover-bg-color: rgb(70, 70, 70);
+  --text-color: rgb(200, 200, 200);
+  --game-clue-color: rgb(200, 200, 200);
+  --textBtn-color: #FFFFFF;
+  --modal-res-bg: rgba(0, 0, 0, 0.9);
+  --border-color: rgb(200, 200, 200);
+  --btn-border-color: rgb(100, 100, 100);
+  --cross-img: url("./../assets/light-cross.png");
+  --main-color: #6c7579;
+  --main-color-hover: #61747d;
+  --box-shadow: 0 0px rgb(86, 38, 6), 0 3px 15px rgb(226 198 198), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 0 3px rgba(255, 255, 255, 0.5);
+  --font-bg: linear-gradient(90deg, #b6afaa, #898074, #605a57, #6f6e6d, #b6afaa);
+  --footer-border-top: #000000;
+  --nonograms-name: #beb6ae;
+  --btns-box-shadow: 0 2px rgb(200, 200, 200),
+  0 3px 15px rgba(0, 0, 0, 0.4),
+  inset 0 1px rgba(255, 255, 255, 0.3),
+  inset 0 0 3px rgba(255, 255, 255, 0.5);
+  --sound-on: url("./../assets/ sound_on_light.svg");
+  --sound-off: url("./../assets/sound_off_light.svg");
 }
 
 body {
@@ -106,18 +136,15 @@ p {
   }
 }
 
-/* Стиль Выпадающей Кнопки */
 .dropbtn {
   width: 80px;
   margin: 0px 5px;
   color: var(--text-color);
   padding: 2px;
   font-size: 16px;
-  background-color: rgba(128, 128, 128, 0.3607843137);
   cursor: pointer;
 }
 
-/* контейнер <div> - необходим для размещения выпадающего содержимого */
 .size_dropdown {
   position: relative;
   display: inline-block;
@@ -137,8 +164,8 @@ p {
   border: 1px solid var(--border-color);
   border-radius: 5px;
   outline: none;
-  background: rgb(147, 80, 36) linear-gradient(rgb(106, 58, 26), rgb(147, 80, 36) 80%);
-  box-shadow: 0 6px rgb(86, 38, 6), 0 3px 15px rgba(0, 0, 0, 0.4), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 0 3px rgba(255, 255, 255, 0.5);
+  background: var(--main-color);
+  box-shadow: var(--btns-box-shadow);
   transition: 0.2s;
 }
 @media screen and (max-width: 820px) {
@@ -153,22 +180,21 @@ p {
 
 .randombtn:hover,
 .dropbtn:hover,
-.statistics:hover {
-  background: rgb(167, 91, 41) linear-gradient(rgb(126, 69, 31), rgb(167, 91, 41) 80%);
+.statistics:hover,
+.theme-switcher:hover {
+  background: var(--main-color-hover);
 }
 
-/* Выпадающей контент (по умолчанию скрыт) */
 .dropdown-content {
   margin-top: 25px;
   display: none;
   position: absolute;
-  background: rgb(167, 91, 41) linear-gradient(rgb(126, 69, 31), rgb(167, 91, 41) 80%);
+  background: var(--main-color);
   border: 1px solid grey;
   min-width: 100px;
   z-index: 1;
 }
 
-/* Ссылки внутри выпадающего списка */
 .dropdown-content span {
   color: var(--textBtn-color);
   padding: 5px 10px;
@@ -191,17 +217,14 @@ p {
   font-size: large;
 }
 
-/* Изменить цвет выпадающих ссылок при наведении */
 .dropdown-content span:hover {
   font-weight: 600;
 }
 
-/* Показать выпадающее меню при наведении */
 .size_dropdown:hover .dropdown-content {
   display: block;
 }
 
-/* Изменить цвет фона выпадающего кнопка при отображении выпадающего списка */
 .size_dropdown:hover .dropbtn {
   background-color: var(--dropdown-content-bg-color);
 }
@@ -241,6 +264,7 @@ p {
 }
 
 .game_top-clue {
+  color: var(--game-clue-color);
   display: flex;
   flex-wrap: wrap;
   background-color: rgba(128, 128, 128, 0.2509803922);
@@ -273,6 +297,7 @@ p {
 }
 
 .game_left-clue {
+  color: var(--game-clue-color);
   background-color: rgba(128, 128, 128, 0.2509803922);
   border-right: 1px solid var(--border-color);
   border-top: 1px solid var(--border-color);
@@ -335,7 +360,7 @@ p {
 .center-s-nonogram-name {
   margin: auto;
   font-size: 34px;
-  color: #af7234;
+  color: var(--nonograms-name);
 }
 @media screen and (max-width: 820px) {
   .center-s-nonogram-name {
@@ -348,13 +373,17 @@ p {
 }
 
 .center-s_timer {
-  text-align: right;
+  color: var(--text-color);
 }
 @media screen and (max-width: 820px) {
   .center-s_timer {
     text-align: center;
     margin: auto;
   }
+}
+
+.center-s_timer span {
+  color: var(--text-color);
 }
 
 .solve-modal,
@@ -490,30 +519,28 @@ p {
   }
 }
 
-.sound-switcher {
+.sound-switcher,
+.sound-switcher--active {
   height: 30px;
   width: 30px;
-  background: url("./../assets/sound_on.svg") no-repeat center/cover;
   cursor: pointer;
 }
 @media screen and (max-width: 820px) {
-  .sound-switcher {
+  .sound-switcher,
+  .sound-switcher--active {
     height: 20px;
     width: 20px;
   }
 }
 
-.sound-switcher--active {
-  height: 30px;
-  width: 30px;
-  background: url("./../assets/sound_off.svg") no-repeat center/cover;
-  cursor: pointer;
+.sound-switcher {
+  background: var(--sound-on);
+  background-size: cover;
 }
-@media screen and (max-width: 820px) {
-  .sound-switcher--active {
-    height: 20px;
-    width: 20px;
-  }
+
+.sound-switcher--active {
+  background: var(--sound-off);
+  background-size: cover;
 }
 
 .statistics {
@@ -558,7 +585,7 @@ p {
   font-size: 17px;
   margin: 0 auto;
   background-color: var(--textBtn-color);
-  box-shadow: 0 0px rgb(86, 38, 6), 0 3px 15px rgb(237, 21, 21), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 0 3px rgba(255, 255, 255, 0.5);
+  box-shadow: var(--box-shadow);
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 }
@@ -601,7 +628,7 @@ footer {
   align-self: center;
   max-width: 1300px;
   width: 100%;
-  border-top: 2px solid #783301;
+  border-top: 2px solid var(--footer-border-top);
   border-top-left-radius: 45px;
   border-top-right-radius: 55px;
 }

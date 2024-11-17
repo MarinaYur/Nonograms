@@ -14,18 +14,15 @@
   }
 }
 
-/* Стиль Выпадающей Кнопки */
 .dropbtn {
   width: 80px;
   margin: 0px 5px;
   color: var(--text-color);
   padding: 2px;
   font-size: 16px;
-  background-color: #8080805c;
   cursor: pointer;
 }
 
-/* контейнер <div> - необходим для размещения выпадающего содержимого */
 .size_dropdown {
   position: relative;
   display: inline-block;
@@ -45,13 +42,8 @@
   border: 1px solid var(--border-color);
   border-radius: 5px;
   outline: none;
-  background: rgb(147, 80, 36)
-    linear-gradient(rgb(106, 58, 26), rgb(147, 80, 36) 80%);
-  box-shadow:
-    0 6px rgb(86, 38, 6),
-    0 3px 15px rgba(0, 0, 0, 0.4),
-    inset 0 1px rgba(255, 255, 255, 0.3),
-    inset 0 0 3px rgba(255, 255, 255, 0.5);
+  background: var(--main-color);
+  box-shadow: var(--btns-box-shadow);
   transition: 0.2s;
   @include media3 {
     padding: 0.3em;
@@ -60,24 +52,21 @@
 
 .randombtn:hover,
 .dropbtn:hover,
-.statistics:hover {
-  background: rgb(167, 91, 41)
-    linear-gradient(rgb(126, 69, 31), rgb(167, 91, 41) 80%);
+.statistics:hover,
+.theme-switcher:hover {
+  background: var(--main-color-hover);
 }
 
-/* Выпадающей контент (по умолчанию скрыт) */
 .dropdown-content {
   margin-top: 25px;
   display: none;
   position: absolute;
-  background: rgb(167, 91, 41)
-    linear-gradient(rgb(126, 69, 31), rgb(167, 91, 41) 80%);
+  background: var(--main-color);
   border: 1px solid grey;
   min-width: 100px;
   z-index: 1;
 }
 
-/* Ссылки внутри выпадающего списка */
 .dropdown-content span {
   color: var(--textBtn-color);
   padding: 5px 10px;
@@ -100,17 +89,14 @@
   font-size: large;
 }
 
-/* Изменить цвет выпадающих ссылок при наведении */
 .dropdown-content span:hover {
   font-weight: 600;
 }
 
-/* Показать выпадающее меню при наведении */
 .size_dropdown:hover .dropdown-content {
   display: block;
 }
 
-/* Изменить цвет фона выпадающего кнопка при отображении выпадающего списка */
 .size_dropdown:hover .dropbtn {
   background-color: var(--dropdown-content-bg-color);
 }

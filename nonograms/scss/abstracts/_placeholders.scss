@@ -4,7 +4,7 @@
 }
 
 %rainbow-font {
-  background: linear-gradient(90deg, #783301, #ffab44, #a15025, #af7234, #783301);
+  background: var(--font-bg);
   background-size: 200% auto;
   background-clip: text;
   font-size: 60px;

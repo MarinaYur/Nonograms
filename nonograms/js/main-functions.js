@@ -293,13 +293,13 @@ export function soundOfBlackCellOn(event) {
   const audio = new Audio();
   if (ifSound) {
     if (event === "black") {
-      audio.src = "./../assets/sound-for-black-cell.mp3";
+      audio.src = "./../nonograms/assets/sound-for-black-cell.mp3";
     }
     if (event === "cross") {
-      audio.src = "./../assets/sound-for-cross.mp3";
+      audio.src = "./../nonograms/assets/sound-for-cross.mp3";
     }
     if (event === "empty") {
-      audio.src = "./../assets/sound-for-empty-cell.mp3";
+      audio.src = "./../nonograms/assets/sound-for-empty-cell.mp3";
     }
     audio.play();
   }

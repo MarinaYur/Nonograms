@@ -68,7 +68,7 @@ centerS.prepend(nonogramSizes);
   rightS.append(soundSwitcher);
   rightS.append(theme);
   theme.append(soundSwitcher);
-  // theme.append(themeSwitcher);
+  theme.append(themeSwitcher);
   rightS.append(statistics);
   rightS.append(resultsModal);
   resultsModal.append(savedResults);
@@ -161,6 +161,7 @@ centerS.prepend(nonogramSizes);
 
   randomBtn.addEventListener("click", chooseRandomTemplate);
   themeSwitcher.addEventListener("click", function () {
+    console.log(document.documentElement);
     if (document.documentElement.hasAttribute("theme")) {
       document.documentElement.removeAttribute("theme");
       localStorage.removeItem("theme");

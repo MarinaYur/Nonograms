@@ -8,24 +8,51 @@
   --panel-bg-color: bisque;
   --dropdown-content-bg-color: rgb(241 200 138);
   ----hover-bg-color: rgb(241 200 138);
-  // --text-color: rgb(80,32,0);
+  --text-color: #000000;
+  --game-clue-color: #000000;
   --textBtn-color: #FFFFFF;
-  --cross-img: url(./../assets/cross.gif);
+  --cross-img: url('./../assets/cross.gif');
   --modal-res-bg: rgba(134, 62, 0, 0.9);
   --border-color: rgb(80, 32, 0);
   --btn-border-color: rgb(215, 197, 79);
+  --main-color: rgb(147, 80, 36) linear-gradient(rgb(106, 58, 26), rgb(147, 80, 36) 80%);
+  --main-color-hover: rgb(167, 91, 41) linear-gradient(rgb(126, 69, 31), rgb(167, 91, 41) 80%);
+  --box-shadow: 0 0px rgb(86, 38, 6), 0 3px 15px rgb(237, 21, 21), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 0 3px rgba(255, 255, 255, 0.5);
+  --font-bg: linear-gradient(90deg, #783301, #ffab44, #a15025, #af7234, #783301);
+  --footer-border-top: #783301;
+  --nonograms-name: #af7234;
+  --btns-box-shadow:  0 6px rgb(86, 38, 6),
+  0 3px 15px rgba(0, 0, 0, 0.4),
+  inset 0 1px rgba(255, 255, 255, 0.3),
+  inset 0 0 3px rgba(255, 255, 255, 0.5);
+  --sound-on: url('./../assets/sound_on.svg');
+  --sound-off: url('./../assets/sound_off.svg');
 }
 
-:root[theme="dark"] {
-  --panel-bg-color: #2f3542;
-  --hover-bg-color: #57606f;
-  --text-color: #ced6e0;
-  --dropdown-content-bg-color: #57606f;
-  --cross-img: url(./../assets/light-cross.png);
-}
+:root[theme=dark] {
+  --panel-bg-color: #3d4556;
+  --dropdown-content-bg-color: rgb(60, 60, 60);
+  --hover-bg-color: rgb(70, 70, 70);
+  --text-color: rgb(200, 200, 200);
+  --game-clue-color: rgb(200, 200, 200);
+  --textBtn-color: #FFFFFF;
+  --modal-res-bg: rgba(0, 0, 0, 0.9);
+  --border-color: rgb(200, 200, 200);
+  --btn-border-color: rgb(100, 100, 100);
+  --cross-img: url('./../assets/light-cross.png');
+  --main-color: #6c7579;
+  --main-color-hover: #61747d;
+  --box-shadow: 0 0px rgb(86, 38, 6), 0 3px 15px rgb(226 198 198), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 0 3px rgba(255, 255, 255, 0.5);
+  --font-bg: linear-gradient(90deg, #b6afaa, #898074, #605a57, #6f6e6d, #b6afaa);
+  --footer-border-top: #000000;
+  --nonograms-name: #beb6ae;
+  --btns-box-shadow: 0 2px rgb(200, 200, 200),
+  0 3px 15px rgba(0, 0, 0, 0.4),
+  inset 0 1px rgba(255, 255, 255, 0.3),
+  inset 0 0 3px rgba(255, 255, 255, 0.5);
+  --sound-on: url('./../assets/ sound_on_light.svg');
+  --sound-off: url('./../assets/sound_off_light.svg');
 
-html {
-  // color: var(--text-color);
 }
 
 body {

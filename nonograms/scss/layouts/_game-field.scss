@@ -31,6 +31,7 @@
 }
 
 .game_top-clue {
+  color: var(--game-clue-color);
   display: flex;
   flex-wrap: wrap;
   background-color: #80808040;
@@ -67,6 +68,8 @@
 }
 
 .game_left-clue {
+  color: var(--game-clue-color);
+
   background-color: #80808040;
   border-right: 1px solid var(--border-color);
   border-top: 1px solid var(--border-color);
