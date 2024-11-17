@@ -22,7 +22,7 @@
 .center-s-nonogram-name {
   margin: auto;
   font-size: 34px;
-  color: #af7234;
+  color: var(--nonograms-name);
   @include media3 {
     margin: auto;
   }
@@ -33,11 +33,16 @@
 }
 
 .center-s_timer {
-  text-align: right;
+  color: var(--text-color);
   @include media3 {
     text-align: center;
     margin: auto;
   }
+}
+
+.center-s_timer span {
+  color: var(--text-color);
+
 }
 
 .solve-modal,
