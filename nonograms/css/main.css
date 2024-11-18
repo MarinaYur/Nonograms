@@ -141,8 +141,13 @@ p {
   margin: 0px 5px;
   color: var(--text-color);
   padding: 2px;
-  font-size: 16px;
+  font-size: 13px;
   cursor: pointer;
+}
+@media screen and (max-width: 640px) {
+  .dropbtn {
+    width: 60px;
+  }
 }
 
 .size_dropdown {
@@ -191,8 +196,12 @@ p {
   position: absolute;
   background: var(--main-color);
   border: 1px solid grey;
-  min-width: 100px;
   z-index: 1;
+}
+@media screen and (max-width: 640px) {
+  .dropdown-content {
+    max-width: 75px;
+  }
 }
 
 .dropdown-content span {
@@ -201,6 +210,13 @@ p {
   text-decoration: none;
   display: block;
   cursor: pointer;
+}
+@media screen and (max-width: 640px) {
+  .dropdown-content span {
+    width: 75px;
+    padding: 0;
+    font-size: 13px;
+  }
 }
 
 .dropdown-content span::first-letter {
@@ -352,6 +368,11 @@ p {
   justify-content: space-between;
   padding: 47px 0 15px 0;
 }
+@media screen and (max-width: 640px) {
+  .center-s-timer-name {
+    font-size: 14px;
+  }
+}
 
 .center-s-timer-name::first-letter {
   text-transform: uppercase;
@@ -365,6 +386,11 @@ p {
 @media screen and (max-width: 820px) {
   .center-s-nonogram-name {
     margin: auto;
+  }
+}
+@media screen and (max-width: 640px) {
+  .center-s-nonogram-name {
+    font-size: 24px;
   }
 }
 
@@ -423,6 +449,24 @@ p {
   text-align: center;
   color: #000000;
 }
+@media screen and (max-width: 640px) {
+  .solve-modal .cant-save-msg,
+  .cant-solve-modal .cant-save-msg {
+    font-size: 35px;
+  }
+}
+@media screen and (max-width: 920px) {
+  .solve-modal,
+  .cant-solve-modal {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 640px) {
+  .solve-modal,
+  .cant-solve-modal {
+    width: 90%;
+  }
+}
 
 .cant-solve-modal {
   background-image: url(./../../assets/atttention.jpeg);
@@ -444,6 +488,11 @@ p {
   text-align: center;
   padding-bottom: 21px;
 }
+@media screen and (max-width: 640px) {
+  .application-name {
+    font-size: 40px;
+  }
+}
 
 .nonogram-sizes {
   flex-direction: column;
@@ -457,6 +506,14 @@ p {
   display: block;
   margin: 10px;
   font-size: 15px;
+}
+@media screen and (max-width: 640px) {
+  .solutionBtn,
+  .resetbtn,
+  .savebtn,
+  .contbtn {
+    font-size: 12px;
+  }
 }
 
 .solutionBtn:hover,
@@ -648,6 +705,13 @@ footer {
   height: 3.5rem;
   background-size: cover;
 }
+@media screen and (max-width: 640px) {
+  .footer__git-logo,
+  .footer__rss-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
 
 .footer__git-logo {
   border-radius: 50%;
@@ -662,4 +726,9 @@ footer span {
   font-size: 35px;
   color: #efea66;
   font-weight: 900;
+}
+@media screen and (max-width: 640px) {
+  footer span {
+    font-size: 25px;
+  }
 }/*# sourceMappingURL=main.css.map */
