@@ -12,7 +12,9 @@
   display: flex;
   justify-content: space-between;
   padding: 47px 0 15px 0;
-
+  @include media4 {
+    font-size: 14px;
+  }
 }
 
 .center-s-timer-name::first-letter {
@@ -25,6 +27,9 @@
   color: var(--nonograms-name);
   @include media3 {
     margin: auto;
+  }
+  @include media4 {
+    font-size: 24px;
   }
 }
 
@@ -85,6 +90,16 @@
     font-weight: 700;
     text-align: center;
     color: #000000;
+    @include media4 {
+      font-size: 35px;
+    }
+  }
+  @include media2 {
+    width: 60%;
+  }
+  @include media4 {
+
+    width: 90%;
   }
 }
 
@@ -109,6 +124,9 @@
   text-align: center;
   padding-bottom: 21px;
   @extend %rainbow-font;
+  @include media4 {
+    font-size: 40px
+  }
 }
 
 .nonogram-sizes {

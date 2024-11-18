@@ -5,6 +5,9 @@
   display: block;
   margin: 10px;
   font-size: 15px;
+  @include media4 {
+    font-size: 12px;
+  }
 }
 
 .solutionBtn:hover,
