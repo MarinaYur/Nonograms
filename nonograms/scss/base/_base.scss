@@ -7,7 +7,7 @@
 :root {
   --panel-bg-color: bisque;
   --dropdown-content-bg-color: rgb(241 200 138);
-  ----hover-bg-color: rgb(241 200 138);
+  --hover-bg-color: rgb(241 200 138);
   --text-color: #000000;
   --game-clue-color: #000000;
   --textBtn-color: #FFFFFF;
@@ -27,6 +27,15 @@
   inset 0 0 3px rgba(255, 255, 255, 0.5);
   --sound-on: url('./../assets/sound_on.svg');
   --sound-off: url('./../assets/sound_off.svg');
+  --solve-msg-bg: linear-gradient(
+    90deg,
+    #e933ff,
+    #ffb400,
+    #ff3333,
+    #334dff,
+    #e933ff);
+  --solve-modal-bg: #fbfe83;
+  --solve-modal-border: 8px solid rgb(165, 42, 42);
 }
 
 :root[theme=dark] {
@@ -52,6 +61,9 @@
   inset 0 0 3px rgba(255, 255, 255, 0.5);
   --sound-on: url('./../assets/ sound_on_light.svg');
   --sound-off: url('./../assets/sound_off_light.svg');
+  --solve-msg-bg: #000000;
+  --solve-modal-bg: rgb(200, 200, 200);
+  --solve-modal-border: 8px solid rgb(121, 114, 114);
 
 }
 

@@ -30,7 +30,7 @@ footer span, .application-name, body .greetings {
 :root {
   --panel-bg-color: bisque;
   --dropdown-content-bg-color: rgb(241 200 138);
-  ----hover-bg-color: rgb(241 200 138);
+  --hover-bg-color: rgb(241 200 138);
   --text-color: #000000;
   --game-clue-color: #000000;
   --textBtn-color: #FFFFFF;
@@ -50,6 +50,15 @@ footer span, .application-name, body .greetings {
   inset 0 0 3px rgba(255, 255, 255, 0.5);
   --sound-on: url("./../assets/sound_on.svg");
   --sound-off: url("./../assets/sound_off.svg");
+  --solve-msg-bg: linear-gradient(
+    90deg,
+    #e933ff,
+    #ffb400,
+    #ff3333,
+    #334dff,
+    #e933ff);
+  --solve-modal-bg: #fbfe83;
+  --solve-modal-border: 8px solid rgb(165, 42, 42);
 }
 
 :root[theme=dark] {
@@ -75,6 +84,9 @@ footer span, .application-name, body .greetings {
   inset 0 0 3px rgba(255, 255, 255, 0.5);
   --sound-on: url("./../assets/ sound_on_light.svg");
   --sound-off: url("./../assets/sound_off_light.svg");
+  --solve-msg-bg: #000000;
+  --solve-modal-bg: rgb(200, 200, 200);
+  --solve-modal-border: 8px solid rgb(121, 114, 114);
 }
 
 body {
@@ -419,7 +431,7 @@ p {
   display: flex;
   align-items: center;
   text-align: center;
-  border: 8px solid rgb(165, 42, 42);
+  border: var(--solve-modal-border);
   border-radius: 65px;
   top: 0;
   left: 0;
@@ -428,7 +440,7 @@ p {
   width: 40%;
   height: 250px;
   z-index: 3;
-  background-color: #fbfe83;
+  background-color: var(--solve-modal-bg);
   animation: textflow 5s linear infinite;
 }
 .solve-modal .solveMsg,
@@ -436,7 +448,7 @@ p {
   font-family: "Snell Roundhand", cursive;
   font-size: 45px;
   text-align: center;
-  background: linear-gradient(90deg, #e933ff, #ffb400, #ff3333, #334dff, #e933ff);
+  background: var(--solve-msg-bg);
   background-size: 200% auto;
   background-clip: text;
   -webkit-background-clip: text;

@@ -57,7 +57,7 @@
   display: flex;
   align-items: center;
   text-align: center;
-  border: 8px solid rgb(165, 42, 42);
+  border: var(--solve-modal-border);
   border-radius: 65px;
   top: 0;
   left: 0;
@@ -66,20 +66,13 @@
   width: 40%;
   height: 250px;
   z-index: 3;
-  background-color: #fbfe83;
+  background-color: var(--solve-modal-bg);
   animation: textflow 5s linear infinite;
   & .solveMsg {
     font-family: "Snell Roundhand", cursive;
     font-size: 45px;
     text-align: center;
-    background: linear-gradient(
-      90deg,
-      #e933ff,
-      #ffb400,
-      #ff3333,
-      #334dff,
-      #e933ff
-    );
+    background: var(--solve-msg-bg);
     background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
